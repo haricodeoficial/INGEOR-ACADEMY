@@ -18,8 +18,7 @@ $url = ruta::ctrRuta();
 <!--FIN - ETIQUETAS META-->
 
 <!--ETIQUETAS CSS-->
-<link rel="icon" href="<?php echo $url;?>vistas/img/icono.png">
-
+<link rel="icon" href="<?php echo $url;?>vistas/img/icon.png">
 <link rel="stylesheet" type="text/css" href="<?php echo $url;?>vistas/css/style.css">
 <!-- CSS only -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -38,13 +37,20 @@ $url = ruta::ctrRuta();
 <body>
 	<?php
 	include "modulos/header.php";
-
+	$ruta = null; 
 	$inicio = true;
 
-		if ($inicio) {
-			include "modulos/inicio.php";
-		
+	if(isset($_GET["ruta"])){
+		$ruta = $_GET["ruta"];
+		if($ruta == "inicio-sesion"){
+			include "modulos/iniciar-sesion.php";
+			$inicio = false;  
 		}
+		
+	}
+	if ($inicio) {
+			include "modulos/inicio.php";
+	}
 	include "modulos/footer.php";
 	?>
 </body>

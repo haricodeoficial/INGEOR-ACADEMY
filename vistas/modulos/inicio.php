@@ -1,6 +1,9 @@
+<?php
+$url = ruta::ctrRuta();
+?>
 <div class="swiper mySwiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide slide1"><img class="overlay-img" style="position:relative;" src="<?php echo $url;?>vistas/img/slide1.jpg" alt="" ><div class="overlay"><h1>Aprendizaje Interactivo</h1></div></div>
         <div class="swiper-slide">Slide 2</div>
         <div class="swiper-slide">Slide 3</div>
         <div class="swiper-slide">Slide 4</div>

@@ -13,13 +13,22 @@
          </form>
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
+                <li class="nav-item cart">
+               <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+               </li>
+               <li class="nav-item favorite">
+               <a href="#"><i class="fa-solid fa-heart"></i></a>
+               </li>
                <li class="nav-item">
                 <a href="#" class="button-5">Registrar</a>
                </li>
                <li class="nav-item">
-               <a href="#" class="button-6">Iniciar Sesión</a>
+               <a href="<?php echo $url;?>inicio-sesion" class="button-6">Iniciar Sesión</a>
 
                </li>
+               
             </ul>
+
          </div>
+       
 </nav>
