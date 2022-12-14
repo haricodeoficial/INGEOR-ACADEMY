@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg fixed-top">
-<img src="" alt="">
+<h1></h1>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
          </button>
@@ -20,10 +20,10 @@
                <a href="#"><i class="fa-solid fa-heart"></i></a>
                </li>
                <li class="nav-item">
-                <a href="#" class="button-5">Registrar</a>
+                <a href="registrar" class="button-5">Registrar</a>
                </li>
                <li class="nav-item">
-               <a href="<?php echo $url;?>inicio-sesion" class="button-6">Iniciar Sesión</a>
+               <a href="iniciar-sesion" class="button-6">Iniciar Sesión</a>
 
                </li>
                
