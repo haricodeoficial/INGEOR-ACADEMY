@@ -37,19 +37,25 @@ $url = ruta::ctrRuta();
 <body>
 	<?php
 	include "modulos/header.php";
+	$rutas = array();
 	$ruta = null; 
-	$inicio = true;
+	
 
 	if(isset($_GET["ruta"])){
-		$ruta = $_GET["ruta"];
-		if($ruta == "inicio-sesion"){
-			include "modulos/iniciar-sesion.php";
-			$inicio = false;  
+		$rutas = explode("/",$_GET["ruta"]);
+		$item = "ruta";
+		$valor =$rutas[0];
+		$rutaCursos = controladorAcademy::ctrMostrarCursos($item, $valor);
+		if($valor == $rutaCursos["ruta"]){
+			$ruta = $valor;
 		}
-		
-	}
-	if ($inicio) {
-			include "modulos/inicio.php";
+		if($ruta != null){
+			include "modulos/cursos.php";
+		}else{
+			include "modulos/error404"; 
+		}
+	}else{
+		include "modulos/inicio.php";
 	}
 	include "modulos/footer.php";
 	?>

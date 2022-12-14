@@ -3,15 +3,16 @@ $url = ruta::ctrRuta();
 ?>
 <div class="swiper mySwiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide slide1"><img class="overlay-img" style="position:relative;" src="<?php echo $url;?>vistas/img/slide1.jpg" alt="" ><div class="overlay"><h1>Aprendizaje Interactivo</h1></div></div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
-        <div class="swiper-slide">Slide 4</div>
-        <div class="swiper-slide">Slide 5</div>
-        <div class="swiper-slide">Slide 6</div>
-        <div class="swiper-slide">Slide 7</div>
-        <div class="swiper-slide">Slide 8</div>
-        <div class="swiper-slide">Slide 9</div>
+        <?php
+        $item = null; 
+        $valor = null; 
+        $slides = controladorAcademy::mostrarSlider($item,$valor);
+        foreach($slides as $key=>$value){
+          echo'
+          <div class="swiper-slide slide1"><img class="overlay-img" style="position:relative;" src="'.$url.''.$value["img"].'" alt="'.$value["titulo"].'" ><div class="overlay"><h1>'.$value["titulo"].'</h1></div></div>'; 
+        }
+
+        ?>
       </div>
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>

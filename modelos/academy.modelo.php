@@ -1,6 +1,6 @@
 <?php
 require_once "conexion.php";
-class modeloHackathon{
+class modeloAcademy{
 	static public function modeloDatos($tabla, $item, $valor){
 		if ($item != null) {
 		$stmt = conexionBaseDeDatos::conectar()->prepare("SELECT *FROM $tabla WHERE $item = :$item");
@@ -17,6 +17,4 @@ $stmt -> close();
 $stmt = null;
 
 	}
-	
-
 }
