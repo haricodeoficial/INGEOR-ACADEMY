@@ -45,14 +45,23 @@ $url = ruta::ctrRuta();
 		$rutas = explode("/",$_GET["ruta"]);
 		$item = "ruta";
 		$valor =$rutas[0];
-		$rutaCursos = controladorAcademy::ctrMostrarCursos($item, $valor);
+		$rutaCursos = controladorAcademy::mostrarCursos($item, $valor);
+		 
 		if($valor == $rutaCursos["ruta"]){
 			$ruta = $valor;
 		}
 		if($ruta != null){
 			include "modulos/cursos.php";
 		}else{
-			include "modulos/error404"; 
+			if($valor =="registrar"){
+				include "modulos/registrar.php";
+			}
+			else if($valor == "iniciar-sesion"){
+				include "modulos/iniciar-sesion.php";
+			}else{
+				include "modulos/error404.php"; 
+
+			}
 		}
 	}else{
 		include "modulos/inicio.php";
