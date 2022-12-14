@@ -75,7 +75,23 @@ $url = ruta::ctrRuta();
         },
       });
 </script> 
-
+<script type="text/javascript">
+      var swiper = new Swiper(".mySwiper2", {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        slidesPerGroup: 3,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+</script>
 <script src="<?php echo $url;?>vistas/js/main.js" type="text/javascript"></script>
 <script>
 jQuery(document).ready(function($) {
