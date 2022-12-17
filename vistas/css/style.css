@@ -549,5 +549,24 @@ label {
 }
 .logo-principal{
   width: 50%;
-  padding: 10px 10px 10px 40px;
+}
+@media(max-width:768px){
+  .button-6{
+    margin: 0px;
+    width: 100%;
+  }
+  .slide-product{
+    padding: 0px;
+  }
+  .swiper{
+    padding: 30px!important;
+  }
+  .titulo-principal{
+    padding-top: 50px;
+    font-size: 50px!important;
+    }
+
+}
+.swiper-principal{
+  padding: 0px!important;
 }

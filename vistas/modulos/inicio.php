@@ -1,7 +1,7 @@
 <?php
 $url = ruta::ctrRuta();
 ?>
-<div class="swiper mySwiper">
+<div class="swiper swiper-principal mySwiper">
       <div class="swiper-wrapper">
         <?php
         $item = null; 
@@ -9,7 +9,7 @@ $url = ruta::ctrRuta();
         $slides = controladorAcademy::mostrarSlider($item,$valor);
         foreach($slides as $key=>$value){
           echo'
-          <div class="swiper-slide slide1"><img class="overlay-img" style="position:relative;" src="'.$url.''.$value["img"].'" alt="'.$value["titulo"].'" ><div class="overlay"><h1>'.$value["titulo"].'</h1></div></div>'; 
+          <div class="swiper-slide slide1"><img class="overlay-img" style="position:relative;" src="'.$url.''.$value["img"].'" alt="'.$value["titulo"].'" ><div class="overlay"><h1 class="titulo-principal">'.$value["titulo"].'</h1></div></div>'; 
         }
 
         ?>

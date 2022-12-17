@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-md-6 titulo">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3 text-center">
                             <h1 class="precio">'.$rutaCursos["precio"].'US$</h1>
                         </div>
                         <div class="col-md-3 text-center">

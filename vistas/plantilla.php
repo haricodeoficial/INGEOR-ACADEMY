@@ -127,6 +127,8 @@ hideEvents.forEach((event) => {
 
 <script type="text/javascript">
       var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        slidesPerGroup: 1,
         pagination: {
           el: ".swiper-pagination",
           type: "progressbar",
@@ -139,11 +141,12 @@ hideEvents.forEach((event) => {
 </script> 
 <script type="text/javascript">
       var swiper = new Swiper(".mySwiper2", {
-        slidesPerView: 4,
-        spaceBetween: 30,
-        slidesPerGroup: 4,
+        slidesPerView: 1,
+        spaceBetween: 20,
+        slidesPerGroup: 1,
         loop: true,
         loopFillGroupWithBlank: true,
+        
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
@@ -151,6 +154,19 @@ hideEvents.forEach((event) => {
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
+        },breakpoints:{
+          768:{
+            slidesPerView: 3,
+            spaceBetween: 20,
+            slidesPerGroup:3,
+          },
+          992:
+          {
+            slidesPerView: 4,
+            spaceBetween: 20,
+            slidesPerGroup:4,
+          }
+
         },
       });
 </script>
