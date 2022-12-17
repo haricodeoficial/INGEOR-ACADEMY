@@ -1,16 +1,21 @@
 <nav class="navbar navbar-expand-lg fixed-top">
-<h1></h1>
+<a href="<?php echo $url;?>">
+   <img class="logo-principal" src="<?php echo $url;?>vistas/img/logoLetras.png" alt="logo">
+</a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
          </button>
-         <form class="form-inline my-2 my-lg-0 navbar-form">
-            <div class="input-group input-group-search mx-auto">
-               <input type="search" class="form-control" placeholder="Buscar" aria-label="Buscar" aria-describedby="search-button-addon">
+            <div class="input-group input-group-search mx-auto" id="buscador">
+               <input type="search" name="buscar" class="form-control" placeholder="Buscar..." aria-label="Buscar" aria-describedby="search-button-addon">
                <div class="input-group-append">
-                  <button class="btn-search btn" type="submit" id="search-button-addon"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+                 <a href="<?php echo $url;?>buscador">
+                 <button class="btn-search btn" type="submit" id="search-button-addon">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+               </button>
+               </a> 
                </div>
             </div>
-         </form>
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item cart">
