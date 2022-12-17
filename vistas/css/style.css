@@ -206,23 +206,13 @@ body {
     object-fit: cover;
   }
   #nav-categorias{
-    background: #000;
-    width: 100%;
-    height: 5vh;
-    align-items: center;
+    background: var(--azul);
+    text-align: center;
   }
   
-  #nav-categorias .nave{
-    display: flex;
-    justify-content: space-between;
-    color: #fff;
-list-style: none;
-  }
+ 
   #nav-cat{
-    background: var(--azul);
     width: 100%;
-    height: 5vh;
-    align-items: center;
   }
   #nav-cat .navegar{
     display: flex;
@@ -383,13 +373,13 @@ color: #fff;
     
 }
 .mySwiper2{
-height: 40vh!important;
+height: 100%;
 }
 
 .login-box {
   margin-top: 200px;
   height: auto;
-  background: #1A2226;
+  background: #000;
   text-align: center;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
@@ -403,7 +393,7 @@ height: 40vh!important;
   letter-spacing: 2px;
   margin-top: 15px;
   font-weight: bold;
-  color: #ECF0F5;
+  color: #fff;
 }
 
 .login-form {
@@ -417,7 +407,6 @@ input[type=text] {
   border-bottom: 2px solid var(--azul);
   border-top: 0px;
   border-radius: 0px;
-  font-weight: bold;
   outline: 0;
   margin-bottom: 20px;
   padding-left: 0px;
@@ -430,7 +419,6 @@ input[type=password] {
   border-bottom: 2px solid var(--azul);
   border-top: 0px;
   border-radius: 0px;
-  font-weight: bold;
   outline: 0;
   padding-left: 0px;
   margin-bottom: 20px;
@@ -505,5 +493,61 @@ label {
 #iniciar-sesion{
   width: 100%;
   height: 100vh;
-  background: var(--azul);
+}
+.curso{
+  width: 100%;
+  height: 40px;
+}
+
+.card-curso{
+  color: #000;
+  text-decoration: none;
+}
+
+.slide-product{
+  padding: 30px;
+}
+
+.slide-product a:hover{
+  color: #000;
+}
+.titulo-curso{
+  font-size: 18px;
+  font-weight: 700;
+}
+.img-curso-extend{
+  width: 100%;
+  height: 20vh;
+}
+.background{
+  background: #000;
+  color: #fff;
+}
+
+.fa-arrow-turn-right:before, .fa-mail-forward:before, .fa-share:before{
+  font-size: 40px;
+}
+.titulo{
+  padding: 30px;
+}
+
+.categorias a{
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+  transition: 0.5s;
+}
+.categorias a:hover{
+  color: #000;
+}
+.cart-heart{
+  padding-top: 40px;
+}
+.cart-heart a i{
+  color: #000;
+  font-size: 20px;
+}
+.logo-principal{
+  width: 50%;
+  padding: 10px 10px 10px 40px;
 }

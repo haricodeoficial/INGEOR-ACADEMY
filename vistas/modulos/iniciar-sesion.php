@@ -5,7 +5,7 @@
             <div class="col-lg-6 col-md-8 login-box">
         
                 <div class="col-lg-12 login-title">
-                    Iniciar Sesión
+                    INICIAR SESIÓN
                 </div>
 
                 <div class="col-lg-12 login-form">
