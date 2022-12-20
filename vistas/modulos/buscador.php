@@ -4,32 +4,33 @@
       <h1>Filtrar</h1>
       <hr>
 
-      <form action="">
+      <form action="" method="get">
       <h2>Por precio</h2>
 
-      Por precio más alto: <input id="test" type="checkbox" />
+      Por precio más alto: <input id="precio1" value="1" tabIndex="1" onClick="ckChange(this)" type="checkbox" name="precio"/>
       <br>
-      Por precio más bajo: <input id="test" type="checkbox" />
+      Por precio más bajo: <input id="precio2" value="2" tabIndex="1" onClick="ckChange(this)" type="checkbox" name="precio"/>
       <br>
-      En oferta: <input id="test" type="checkbox" />
+      En oferta: <input id="precio3" value="1" tabIndex="3" onClick="ckChange(this)" type="checkbox" name="precio"/>
       <br>
       <h2>Por Fecha</h2>
-      Más reciente - más antiguo: <input id="test" type="checkbox" />
+      Más reciente - más antiguo: <input id="fecha1" value="1" tabIndex="1" onClick="ckChange(this)" type="checkbox" name="fecha"/>
       <br>
-      Más antiguo -  más reciente: <input id="test" type="checkbox" />
+      Más antiguo -  más reciente: <input id="fecha2" value="2" tabIndex="1" onClick="ckChange(this)" type="checkbox" name="fecha"/>
       <br>
-      Nuevos: <input id="test" type="checkbox" />
+      Nuevos: <input id="fecha3" value="3" tabIndex="1" onClick="ckChange(this)" type="checkbox"  name="fecha"/>
       <br>
       <h2>Por Valoración</h2>
-      Mejor valorado - Peor valorado: <input id="test" type="checkbox" />
+      Mejor valorado - Peor valorado: <input id="valoracion1" value="1" tabIndex="1" onClick="ckChange(this)" type="checkbox" name="valoracion" />
       <br>
-      Peor valorado -  Mejor valorado: <input id="test" type="checkbox" />
+      Peor valorado -  Mejor valorado: <input id="valoracion2" value="2" tabIndex="1" onClick="ckChange(this)" type="checkbox" name="valoracion"/>
       <br>
-      Nuevos: <input id="test" type="checkbox" />
+      Nuevos: <input id="valoracion3" value="3" tabIndex="1" onClick="ckChange(this)" type="checkbox" name="valoracion"/>
       <br>
       <br>
-      <input type="submit" value="Buscar"/>
+      <input type="submit" name="submit" value="Buscar" class="button-5"/>
       </form>
+
         </div>
         <div class="col-md-9">
           <?php
@@ -44,11 +45,19 @@
              $modo = "DESC";
              $cursos = null; 
              $ordenar = "id";
-            
+
              if(isset($rutas[1])){
                 $busqueda = $rutas[1];
                 $cursos = controladorAcademy::ctrBuscarCursos($busqueda, $ordenar,$modo,$base,$tope);
                 $listarCursos = controladorAcademy::ctrListarCursosBusqueda($busqueda);
+             }
+             var_dump(isset($_GET['precio']));
+             if(isset($_GET['precio'])){
+                $busqueda = $rutas[1];
+                $ordenar = "precio";
+                $cursos = controladorAcademy::ctrBuscarCursos($busqueda, $ordenar,$modo,$base,$tope);
+                $listaCursos = controladorAcademy::ctrListarCursosBusqueda($busqueda);
+                
              }
              if(!$cursos){
                 echo '<div class="col-xs-12 error404 text-center">

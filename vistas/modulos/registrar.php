@@ -1,5 +1,5 @@
 <section id="registrar">
-<div class="container">
+<div class="padding-registrar container">
         <div class="row">
             <div class="col-lg-3 col-md-2"></div>
             <div class="col-lg-6 col-md-8 login-box">
