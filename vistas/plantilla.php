@@ -117,9 +117,6 @@ $url = ruta::ctrRuta();
 <script>
   function show() {
   tooltip.setAttribute('data-show', '');
-
-  // We need to tell Popper to update the tooltip position
-  // after we show the tooltip, otherwise it will be incorrect
   popperInstance.update();
 }
 

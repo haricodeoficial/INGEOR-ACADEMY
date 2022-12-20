@@ -3,8 +3,8 @@
         <div class="col-md-3 border">
       <h1>Filtrar</h1>
       <hr>
-
-      <form action="" method="get">
+     
+      <form name="Formulariofiltro" method="post" action=""<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>"">
       <h2>Por precio</h2>
 
       Por precio más alto: <input id="precio1" value="1" tabIndex="1" onClick="ckChange(this)" type="checkbox" name="precio"/>
@@ -41,7 +41,7 @@
              <?php
              $listaCursos = null; 
              $base = 1; 
-             $tope = 4; 
+             $tope = 10; 
              $modo = "DESC";
              $cursos = null; 
              $ordenar = "id";
@@ -51,13 +51,43 @@
                 $cursos = controladorAcademy::ctrBuscarCursos($busqueda, $ordenar,$modo,$base,$tope);
                 $listarCursos = controladorAcademy::ctrListarCursosBusqueda($busqueda);
              }
-             var_dump(isset($_GET['precio']));
-             if(isset($_GET['precio'])){
+          
+
+             if(isset($_POST['precio'])){
+                if($_POST['precio'] == 1){
+                  $modo = "DESC";
+                }
+                else if($_POST['precio'] == 2){
+                  $modo = "ASC";
+                }
                 $busqueda = $rutas[1];
                 $ordenar = "precio";
                 $cursos = controladorAcademy::ctrBuscarCursos($busqueda, $ordenar,$modo,$base,$tope);
                 $listaCursos = controladorAcademy::ctrListarCursosBusqueda($busqueda);
                 
+             }
+             if(isset($_POST['fecha'])){
+              if($_POST['fecha'] == 1){
+                $modo = "DESC";
+              }
+              else if($_POST['fecha'] == 2){
+                $modo = "ASC";
+              }
+              $busqueda = $rutas[1];
+              $ordenar = "fecha-inicio";
+              $cursos = controladorAcademy::ctrBuscarCursos($busqueda, $ordenar,$modo,$base,$tope);
+              $listaCursos = controladorAcademy::ctrListarCursosBusqueda($busqueda);
+             }
+             if(isset($_POST['valoracion'])){
+              if($_POST['valoracion'] == 1){
+                $modo = "DESC";
+              }
+              else if($_POST['valoracion'] == 2){
+                $modo = "ASC";
+              }
+              $ordenar = "rating";
+              $cursos = controladorAcademy::ctrBuscarCursos($busqueda, $ordenar,$modo,$base,$tope);
+              $listaCursos = controladorAcademy::ctrListarCursosBusqueda($busqueda);
              }
              if(!$cursos){
                 echo '<div class="col-xs-12 error404 text-center">
