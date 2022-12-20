@@ -1,3 +1,9 @@
+$("#buscador a").click(function(){
+if(("#buscador input").val()==""){
+    $("#buscador a").attr("href","");
+}
+})
+
 $("#buscador input").change(function(){
     var busqueda = $("#buscador input").val();
     var expresion = /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]*$/;
@@ -6,10 +12,13 @@ $("#buscador input").change(function(){
 
     }
     else{
-        var evaluarBusqueda = busqueda.replace(/[áéíóúÁÉÍÓÚ ]/g, "-");
+        var evaluarBusqueda = busqueda.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
         var rutaBuscador = $("#buscador a").attr("href");
 
         if($("#buscador input").val() != ""){
+            evaluarBusqueda = busqueda.replace(/[áéíóúÁÉÍÓÚ ]/g, "-");
+
             $("#buscador a").attr("href",rutaBuscador+"/"+evaluarBusqueda);
 
         }

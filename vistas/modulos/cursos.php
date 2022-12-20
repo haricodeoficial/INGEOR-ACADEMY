@@ -12,12 +12,12 @@
                     <h1 class="titulo">'.$rutaCursos["nombre"].'</h1>
                     <p>'.$rutaCursos["descripcion"].'</p>
                     <select class="star-rating">
-                        <option value="">Select a rating</option>
-                        <option value="5">Excellent</option>
-                        <option value="4">Very Good</option>
-                        <option value="3">Average</option>
-                        <option value="2">Poor</option>
-                        <option value="1">Terrible</option>
+                    <option value="">Evaluar</option>
+                    <option value="5">Excelente</option>
+                    <option value="4">Muy bien</option>
+                    <option value="3">Debe mejorar</option>
+                    <option value="2">Malo</option>
+                    <option value="1">Muy malo</option>
                     </select>
                     <p>Docente: '.$rutaCursos["docente"].'</p>
                 </div>
@@ -176,13 +176,13 @@
                ';
                $item = null; 
                $valor = null; 
-               $cursos = controladorAcademy::mostrarCursos($item,$valor);
+               $comentarios = controladorAcademy::mostrarComentarios($item,$valor);
 
-               foreach($cursos as $key=>$value){
-                   if($rutaCursos["id_categoria"] == $value["id_categoria"] && $rutaCursos["id"] != $value["id"]){
+               foreach($comentarios as $key=>$value){
+                  
                        echo'
                        <div class="swiper-slide slide-product">
-                       <a class="card-curso" href="'.$value["ruta"].'" > 
+                       <a class="card-curso" href="#" > 
                          <div class="container justify-content-center" id="card-tooltip" aria-describedby="tooltip">
                              <div class="row">
                                <div class="col-md-12">
@@ -190,10 +190,11 @@
                                <i class="fa-solid fa-user-secret"></i>
                                </div> 
                                <div class="col-md-12">            
-                                 <h4 class="titulo-curso">'.$value["nombre"].'</h4>
+                                 <h4 class="titulo-curso">Edson Hernández</h4>
+                                 <p>Fecha: '.$value["fecha"].'</p> 
+
                                </div>
-                                 <p>Precio: <strong>'.$value["precio"].'$</strong></p> 
-                                 <p>Fecha inicio: '.$value["fecha-inicio"].'</p>
+                                 <p>'.$value["comentario"].'</p> 
                              <select class="star-rating">
                                  <option value="">Select a rating</option>
                                  <option value="5">Excellent</option>
@@ -202,8 +203,7 @@
                                  <option value="2">Poor</option>
                                  <option value="1">Terrible</option>
                              </select>
-                             <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                             <a href="#"><i class="fa-solid fa-heart"></i></a>
+                            
                              </div>
                          </div>
                          </a>
@@ -213,7 +213,7 @@
                        ';
 
                    }
-               }
+               
                echo'
                </div>
                <div class="swiper-button-next"></div>

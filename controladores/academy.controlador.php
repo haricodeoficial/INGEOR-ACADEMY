@@ -29,6 +29,17 @@ class controladorAcademy{
         return $respuesta; 
 
     }
+    static public function mostrarComentarios($item,$valor){
+        $tabla = "comentarios"; 
+        $respuesta = modeloAcademy::modeloDatos($tabla,$item,$valor);
+        return $respuesta;
+
+    }
+    static public function mostrarSecciones($item,$valor){
+        $tabla = "secciones";
+        $respuesta = modeloAcademy::modeloDatos($tabla, $item,$valor);
+        return $respuesta; 
+    } 
 }
 
 ?>

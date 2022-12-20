@@ -31,13 +31,16 @@ $url = ruta::ctrRuta();
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<!--GOOGLE FONTS-->
 
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="<?php echo $url;?>vistas/css/jBox.all.css">
-  <link rel="stylesheet" type="text/css" href="<?php echo $url;?>vistas/css/demo.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+<link rel="stylesheet" type="text/css" href="<?php echo $url;?>vistas/css/jBox.all.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $url;?>vistas/css/demo.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
   <script>
   $( function() {
@@ -62,35 +65,47 @@ $url = ruta::ctrRuta();
 	include "modulos/header.php";
 	$rutas = array();
 	$ruta = null; 
-	
+  $rutaCategorias = null;
+
 
 	if(isset($_GET["ruta"])){
 		$rutas = explode("/",$_GET["ruta"]);
 		$item = "ruta";
 		$valor =$rutas[0];
 		$rutaCursos = controladorAcademy::mostrarCursos($item, $valor);
+    $rutaSecciones = controladorAcademy::mostrarSecciones($item,$valor);
     if($rutaCursos){
         if($valor == $rutaCursos["ruta"]){
           $ruta = $valor;
         }
     }
-		if($ruta != null){
-			include "modulos/cursos.php";
-		}else{
-			if($valor =="registrar"){
-				include "modulos/registrar.php";
-			}
-			else if($valor == "iniciar-sesion"){
-				include "modulos/iniciar-sesion.php";
-			}else if($valor == "buscador"){
-        include "modulos/buscador.php";
+    if($rutaSecciones){
+      if($valor == $rutaSecciones["ruta"]){
+        $rutaCategorias = $valor; 
       }
-
-      else{
-				include "modulos/error404.php"; 
-
-			}
-		}
+    }
+    if($rutaCategorias != null){
+      include "modulos/categoria.php";
+    }else{
+      if($ruta != null){
+        include "modulos/cursos.php";
+      }else{
+        if($valor =="registrar"){
+          include "modulos/registrar.php";
+        }
+        else if($valor == "iniciar-sesion"){
+          include "modulos/iniciar-sesion.php";
+        }else if($valor == "buscador"){
+          include "modulos/buscador.php";
+        }
+  
+        else{
+          include "modulos/error404.php"; 
+  
+        }
+      }
+    }
+		
 	}else{
 		include "modulos/inicio.php";
 	}

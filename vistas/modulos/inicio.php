@@ -39,7 +39,7 @@ $url = ruta::ctrRuta();
   $categorias = controladorAcademy::mostrarCategorias($item,$valor);
   $cursos = controladorAcademy::mostrarCursos($item,$valor);
   foreach($categorias as $key=>$value){
-    echo'   <h1>'.$value["categoria"].'</h1>
+    echo'   <h1>'.mb_strtoupper($value["categoria"]).'</h1>
     <div class="swiper mySwiper2 swiper-product">
     <div class="swiper-wrapper">
 

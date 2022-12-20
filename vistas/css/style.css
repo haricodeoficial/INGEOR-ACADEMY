@@ -2,7 +2,10 @@
     
     --azul: #0071C0;
 }
+
 body {
+  font-family: 'Roboto', sans-serif!important;
+
 	padding-top: 56px;
  }
  .navbar-form {
@@ -515,6 +518,11 @@ label {
   font-size: 18px;
   font-weight: 700;
 }
+.img-curso{
+  width: 100%!important;
+}
+
+
 .img-curso-extend{
   width: 100%;
   height: 20vh;
@@ -569,4 +577,19 @@ label {
 }
 .swiper-principal{
   padding: 0px!important;
+}
+footer{
+  margin-top: 100px;
+}
+#error{
+  font-size: 50px;
+  font-weight: 800;
+  width: 100%;
+  height: 100vh;
+}
+.padding-error{
+  padding-top: 150px;
+}
+.border{
+  border-left: 1px solid #000;
 }
