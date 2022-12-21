@@ -221,6 +221,7 @@ var starRatingControl = new StarRating('.star-rating',{
 <script src="<?php echo $url;?>vistas/js/jBox.all.min.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/demo.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/check.js" type="text/javascript"></script>
+<script src="<?php echo $url;?>vistas/js/usuarios.js" type="text/javascript"></script>
 
 <script src="<?php echo $url;?>vistas/js/buscador.js" type="text/javascript"></script>
 
