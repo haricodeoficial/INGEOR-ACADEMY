@@ -44,8 +44,22 @@
                                     <p>¿Ya tienes una cuenta? <a href="iniciar-sesion">Inicia Sesión</a> </p>
 
                                 </div>
+                                <div class="col-md-12">
+                                <div class="checkBox">
+                                        <label for="">
+                                            <input id="regTerminos" type="checkbox">
+                                            <small style="color: #fff;">
+
+                                            Al registrarse, usted acepta nuestras condiciones de uso y políticas de privacidad. 
+                                            <a href="https://www.iubenda.com/privacy-policy/57346718" class="iubenda-black iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a>
+    
+                                        </small>
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="col-lg-6 login-btm login-button">
-                                    <button type="submit" class="btn btn-outline-primary">Registrarse</button>
+                                    
+                                    <input type="submit" class="btn btn-outline-primary" value="ENVIAR"/>
                                 </div>
                             </div>
                         </form>

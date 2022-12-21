@@ -25,6 +25,7 @@
                                     <!-- Error Message -->
                                 </div>
                                 <div class="col-lg-6 login-btm login-button">
+                                    
                                     <button type="submit" class="btn btn-outline-primary">Ingresar</button>
                                 </div>
                             </div>

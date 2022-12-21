@@ -85,6 +85,7 @@
               else if($_POST['valoracion'] == 2){
                 $modo = "ASC";
               }
+              $busqueda = $rutas[1];
               $ordenar = "rating";
               $cursos = controladorAcademy::ctrBuscarCursos($busqueda, $ordenar,$modo,$base,$tope);
               $listaCursos = controladorAcademy::ctrListarCursosBusqueda($busqueda);
@@ -111,6 +112,7 @@
                           </div>
                             <p>Precio: <strong>'.$value["precio"].'$</strong></p> 
                             <p>Fecha inicio: '.$value["fecha-inicio"].'</p>
+                            <p>'.$value["rating"].'</p>
                         <select class="star-rating">
                             <option value="">Evaluar</option>
                             <option value="5">Excelente</option>
