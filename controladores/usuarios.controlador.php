@@ -25,6 +25,7 @@ class ControladorUsuarios{
                     date_default_timezone_set("America/Guatemala");
                     $url = ruta::ctrRuta();
                     $mail = new PHPMailer;
+                    $mail->CharSet = 'UTF-8';
                     $mail->isMail();
                     $mail->setFrom('ingeor@oficial.com','Cursos a tu alcance');
                     $mail->addReplyTo('ingeor@oficial.com','Cursos a tu alcance');

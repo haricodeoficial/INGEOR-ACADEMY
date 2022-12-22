@@ -113,6 +113,8 @@ $url = ruta::ctrRuta();
 	}
 	include "modulos/footer.php";
 	?>
+  <input type="hidden" value="<?php echo $url; ?>" id="rutaOculta">
+
 </body>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 
