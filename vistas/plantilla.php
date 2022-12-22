@@ -39,8 +39,10 @@ $url = ruta::ctrRuta();
 
 <link rel="stylesheet" type="text/css" href="<?php echo $url;?>vistas/css/jBox.all.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $url;?>vistas/css/demo.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $url;?>vistas/css/sweetalert.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="<?php echo $url;?>vistas/js/sweetalert.min.js" type="text/javascript"></script>
 
   <script>
   $( function() {
@@ -95,8 +97,8 @@ $url = ruta::ctrRuta();
         }
         else if($valor == "iniciar-sesion"){
           include "modulos/iniciar-sesion.php";
-        }else if($valor == "buscador"){
-          include "modulos/buscador.php";
+        }else if($valor == "buscador" || $valor == "verificar"){
+          include "modulos/".$rutas[0].".php";
         }
   
         else{
@@ -222,9 +224,7 @@ var starRatingControl = new StarRating('.star-rating',{
 <script src="<?php echo $url;?>vistas/js/demo.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/check.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/usuarios.js" type="text/javascript"></script>
-
 <script src="<?php echo $url;?>vistas/js/buscador.js" type="text/javascript"></script>
-
 <script src="<?php echo $url;?>vistas/js/main.js" type="text/javascript"></script>
 <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
 <script>

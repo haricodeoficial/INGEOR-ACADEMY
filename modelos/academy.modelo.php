@@ -34,4 +34,9 @@ $stmt = null;
 		$stmt = null;
 
 	}
+	//Mostrar Usuario
+	static public function mdlMostrarUsuario($tabla, $item, $valor){
+		$stmt = conexionBaseDeDatos::conectar()->prepare("SELECT *FROM $tabla WHERE ruta like '%$busqueda%' OR nombre like '%$busqueda%' OR descripcion like '%$busqueda%' OR introducción like '%$busqueda%' OR docente like '%$busqueda%'");
+
+	}
 }
