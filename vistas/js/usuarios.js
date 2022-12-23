@@ -1,3 +1,9 @@
+//Captura de ruta
+var rutaActual = location.href; 
+$(".btnIngreso").click(function(){
+    localStorage.setItem("rutaActual",rutaActual);
+    
+})
 //FORMATEAR EL CAMPO
 $("input").focus(function(){
     $(".alert").remove();

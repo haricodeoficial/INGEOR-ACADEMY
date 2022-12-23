@@ -16,28 +16,28 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-control-label">Nombre</label>
-                                    <input type="text" class="form-control" name="regUsuario" id="regUsuario" require>
+                                    <input type="text" class="form-control" name="regUsuario" id="regUsuario" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                             <div class="form-group">
                                     <label class="form-control-label">Apellidos</label>
-                                    <input type="text" class="form-control" name="regUsuarioApellido" id="regUsuarioApellido" require>
+                                    <input type="text" class="form-control" name="regUsuarioApellido" id="regUsuarioApellido" required>
                                 </div>
                             </div>
                             </div>
                            
                             <div class="form-group">
                                 <label class="form-control-label">Correo</label>
-                                <input type="text" class="form-control"name="regEmail" id="regEmail" require>
+                                <input type="email" class="form-control"name="regEmail" id="regEmail" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Contraseña</label>
-                                <input type="password" class="form-control" name="regPassword" id="regPassword"require>
+                                <input type="password" class="form-control" name="regPassword" id="regPassword"required>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Confirmar contraseña</label>
-                                <input type="password" class="form-control" name="regConfirmacion" id="regConfirmacion" require>
+                                <input type="password" class="form-control" name="regConfirmacion" id="regConfirmacion" required>
                             </div>
                             <div class="col-lg-12 loginbttm">
                                 <div class="col-lg-12 login-btm login-text">

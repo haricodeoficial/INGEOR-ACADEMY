@@ -118,27 +118,7 @@ $url = ruta::ctrRuta();
 </body>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 
-<script>
-  function show() {
-  tooltip.setAttribute('data-show', '');
-  popperInstance.update();
-}
 
-function hide() {
-  tooltip.removeAttribute('data-show');
-}
-
-const showEvents = ['mouseenter', 'focus'];
-const hideEvents = ['mouseleave', 'blur'];
-
-showEvents.forEach((event) => {
-  button.addEventListener(event, show);
-});
-
-hideEvents.forEach((event) => {
-  button.addEventListener(event, hide);
-});
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
 <script type="text/javascript">
@@ -186,28 +166,7 @@ hideEvents.forEach((event) => {
         },
       });
 </script>
-<script type="text/javascript">
-	var urlActual = jQuery(location).attr('href');
-var shareData = {
-  title: 'Comparto este curso contigo!',
-  text: 'échale un vistazo y comienza tu aprendizaje interactivo',
-  url: 'https://developer.mozilla.org'
-}
-shareData['url'] = ''+urlActual;
 
-const btn = document.querySelector('.share-button');
-const resultPara = document.querySelector('.result');
-
-// Share must be triggered by "user activation"
-btn.addEventListener('click', async () => {
-  try {
-    await navigator.share(shareData);
-    resultPara.textContent = 'MDN shared successfully';
-  } catch (err) {
-    resultPara.textContent = `Error: ${err}`;
-  }
-});
-</script>
 <script src="<?php echo $url;?>vistas/js/star-rating.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 var starRatingControl = new StarRating('.star-rating',{
