@@ -1,8 +1,12 @@
 :root{
     
     --azul: #0071C0;
+    --red: #E45E4C;
 }
+
 body {
+  font-family: 'Roboto', sans-serif!important;
+
 	padding-top: 56px;
  }
  .navbar-form {
@@ -135,6 +139,48 @@ body {
   color: rgba(0, 0, 0, 0.65);
   transform: translateY(0);
 }
+
+
+/*BUTTON 7*/
+.button-7 {
+  align-items: center;
+  background-color: var(--red);
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-flex;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  width: 100%;
+
+}
+
+.button-7:hover,
+.button-7:focus {
+  background-color: var(--red);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-7:hover {
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.button-7:active {
+  background-color: var(--red);
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
 .btn-search{
     
     color: #fff!important;
@@ -152,8 +198,6 @@ body {
   .swiper-slide {
     text-align: center;
     font-size: 18px;
-
-    /* Center slide text vertically */
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -515,6 +559,11 @@ label {
   font-size: 18px;
   font-weight: 700;
 }
+.img-curso{
+  width: 100%!important;
+}
+
+
 .img-curso-extend{
   width: 100%;
   height: 20vh;
@@ -549,5 +598,86 @@ label {
 }
 .logo-principal{
   width: 50%;
-  padding: 10px 10px 10px 40px;
+}
+@media(max-width:768px){
+  .button-6{
+    margin: 0px;
+    width: 100%;
+  }
+  .slide-product{
+    padding: 0px;
+  }
+  .swiper{
+    padding: 30px!important;
+  }
+  .titulo-principal{
+    padding-top: 50px;
+    font-size: 50px!important;
+    }
+
+}
+.swiper-principal{
+  padding: 0px!important;
+}
+footer{
+  margin-top: 100px;
+}
+#error{
+  font-size: 50px;
+  font-weight: 800;
+  width: 100%;
+  height: 100vh;
+}
+.padding-error{
+  padding-top: 150px;
+}
+.border{
+  border-left: 1px solid #000;
+}
+.center-div{
+  display: grid;
+  place-items: center;
+}
+.banner-categoria{
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../img/categoria.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 100%;
+  height: 50vh;
+}
+.content{
+padding-top: 100px;
+}
+.titulo-categorias{
+  color: #fff;
+  font-weight: 800;
+  font-size: 50px;
+}
+.padding-inicio-sesion{
+  padding-top:100px;
+}
+.padding-registrar{
+  padding-top: 60px;
+}
+
+.img-circle{
+  width: 45px;
+}
+
+.g-recaptcha{
+  padding: 15px 15px 15px 150px!important;
+}
+.banner-perfil{
+  background: #000;
+  height: 50vh;
+  width: 100%;
+}
+
+
+.img-circle-perfil{
+width: 50%;
+}
+.content{
+  padding-top: 40px;
 }

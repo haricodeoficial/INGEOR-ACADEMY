@@ -1,0 +1,563 @@
+<?php
+
+class ControladorUsuarios{
+    public function ctrRegistroUsuario(){
+        if(isset($_POST["regUsuario"])){
+            
+			if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["regUsuario"]) &&
+            preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["regEmail"]) &&
+            preg_match('/^[a-zA-Z0-9]+$/', $_POST["regPassword"])){
+                $encriptar = crypt($_POST["regPassword"],'$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+                $encriptarEmail = md5($_POST["regEmail"]);
+                $datos = array(
+                "nombre"=>$_POST["regUsuario"],
+                "apellido"=>$_POST["regUsuarioApellido"],
+                "password"=>$encriptar,
+                "email"=>$_POST["regEmail"],
+                "foto"=>"",
+                "modo"=>"directo",
+                "verificacion"=>1,
+                "emailEncriptado" =>$encriptarEmail);
+
+                $tabla = "usuarios"; 
+                $respuesta = ModeloUsuarios::mdlRegistroUsuario($tabla, $datos);
+
+                if($respuesta == "ok"){
+                    date_default_timezone_set("America/Guatemala");
+                    $url = ruta::ctrRuta();
+                    $mail = new PHPMailer;
+                    $mail->CharSet = 'UTF-8';
+                    $mail->isMail();
+                    $mail->setFrom('ingeor@oficial.com','Cursos a tu alcance');
+                    $mail->addReplyTo('ingeor@oficial.com','Cursos a tu alcance');
+                    $mail->Subject = "Por favor verifique su dirección de correo electrónico";
+                    $mail->addAddress($_POST["regEmail"]);
+                    $mail->msgHTML('
+                    <div style="width:100%; background:#eee;position:relative;font-family:sans-serif;padding-bottom:40px;">
+    
+                    <center>
+                        <a href="">
+                            <img style="padding: 20px; width: 20%;" src="https://ingeorh.com/vistas/img/logoLetras.png">
+                        </a>
+                    </center>
+                    <div style="position: relative; margin: auto;width: 600px; background: white;padding: 20px;">
+                        <center>
+                            <img style="border: none; width: 30%;" src="https://previews.dropbox.com/p/thumb/ABwNf9ga4sIF2ZSQWM47M9mUnQ3c8FrxC6PhGNYN4rs1sU7SyWdsCCDl_KEuIYd-Q57zpk9foZ3mPdvqaVgS3LkgRslqhFfL3FI0hpp45HemsWgzCM6_hoAm_Kt6yq03ZREd9DJqpUgUyiH8dWXtx0ocFTxip4No92-6stb9p-4UYSg5VBEmtoyOfOjcF4hKoyhcAXwq0yFRreeW8GPG_aVGbdK71ZN84KAQKorjE-tIZ7KMLEMN2VxjupGKll8oiiSEZGpRPw_aePyvghcFsY5yDa18mTMlX4Un-IsLe64_XqEc_RbTxiZBiWPcF5NIL3Ln3FRXLGdGIJ2a0pYuJCKhXvHFgoAOTIkAVGidgoxr0ISuy47Yc9X0RjjJAeAi0KE/p.gif"/>
+                                  <h3 style="font-weight: 100; color: #999;">VERIFIQUE SU DIRECCIÓN DE CORREO ELECTRÓNICO</h3>
+                            <hr style="border: 1px solid #ccc; width: 80%;">
+                            <h4 style="font-weight: 100; color: #999; padding: 0 20px;">Para comenzar a usar su cuenta de ingeorAcademy, debe confirma su dirección de correo electrónico</h4>
+                            <a href="'.$url.'verificar/'.$encriptarEmail.'" target="_blank" style="text-decoration: none;">
+                                <div style="line-height: 60px;background: #0071C0;width: 60%; color: white;">Verifique su dirección de correo electrónico</div>
+                            </a>
+                        <br>
+                        <hr style="border: 1px solid #ccc; width: 80%;">
+                <h5>Si no se inscribiío en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
+                        </center>
+                
+                    </div>
+                    </div>
+                    
+                    ');
+                    $envio = $mail->Send();
+                    if(!$envio){
+                        echo '<script> 
+
+                        swal({
+                              title: "¡ERROR!",
+                              text: " !Ha ocurrido un problema enviando verificación de correo electrónico a'.$_POST["regEmail"].$mail->ErrorInfo.'¡",
+                              type:"error",
+                              confirmButtonText: "Cerrar",
+                              closeOnConfirm: false
+                            },
+        
+                            function(isConfirm){
+        
+                                if(isConfirm){
+                                    history.back();
+                                }
+                        });
+        
+                    </script>';
+    
+                    }else{
+
+                    echo '<script> 
+
+                    swal({
+                          title: "¡OK!",
+                          text: "Porfavor revise la bandeja de entreda o la carpeta de SPAM de su correo electrónico '.$_POST["regEmail"].' para verificar la cuenta",
+                          type:"success",
+                          confirmButtonText: "Cerrar",
+                          closeOnConfirm: false
+                        },
+    
+                        function(isConfirm){
+    
+                            if(isConfirm){
+                                history.back();
+                            }
+                    });
+    
+                </script>';
+
+                }
+
+
+                }
+            }else{
+                echo '<script> 
+
+                swal({
+                      title: "¡ERROR!",
+                      text: "¡Ha ocurrido un problema!",
+                      type:"error",
+                      confirmButtonText: "Cerrar",
+                      closeOnConfirm: false
+                    },
+
+                    function(isConfirm){
+
+                        if(isConfirm){
+                            history.back();
+                        }
+                });
+
+            </script>';
+            }
+        }
+    }
+
+    //MOSTRAR USUARIO
+    static public function ctrMostrarUsuario($item, $valor){
+        $tabla = "usuarios";
+        $respuesta = ModeloUsuarios::mdlMostrarUsuario($tabla,$item,$valor);
+        return $respuesta;
+    }
+    //ACTUALIZAR USUARIO
+    static public function ctrActualizarUsuario($id, $item, $valor){
+
+		$tabla = "usuarios";
+
+		$respuesta = ModeloUsuarios::mdlActualizarUsuario($tabla, $id, $item, $valor);
+
+		return $respuesta;
+
+	}
+
+   
+	public function ctrIngresoUsuario(){
+        if(isset($_POST['g-recaptcha-response'])){
+            var_dump(isset($_POST['g-recaptcha-response']));
+            $captcha = $_POST['g-recaptcha-response'];
+            if(!$captcha){
+                echo'<script>
+        
+                swal({
+                      title: "¡ERROR!",
+                      text: "¡Debes aceptar el recaptcha para poder continuar!",
+                      type: "error",
+                      confirmButtonText: "Cerrar",
+                      closeOnConfirm: false
+                },
+
+                function(isConfirm){
+                         if (isConfirm) {	   
+                            history.back();
+                          } 
+                });
+
+                </script>';
+
+            }
+            else{
+                $secretKey = "6Lf3FKwjAAAAAHauSsz5S3hRswG6PMoBSBYADTA8";
+                if(isset($_POST["ingEmail"])){
+    
+                    if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["ingEmail"]) &&
+                       preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])){
+        
+                        $encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+        
+                        $tabla = "usuarios";
+                        $item = "email";
+                        $valor = $_POST["ingEmail"];
+        
+                        $respuesta = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+        
+                        if($respuesta["email"] == $_POST["ingEmail"] && $respuesta["password"] == $encriptar){
+        
+                            if($respuesta["verificacion"] == 1){
+        
+                                echo'<script>
+        
+                                    swal({
+                                          title: "¡NO HA VERIFICADO SU CORREO ELECTRÓNICO!",
+                                          text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo para verififcar la dirección de correo electrónico '.$respuesta["email"].'!",
+                                          type: "error",
+                                          confirmButtonText: "Cerrar",
+                                          closeOnConfirm: false
+                                    },
+        
+                                    function(isConfirm){
+                                             if (isConfirm) {	   
+                                                history.back();
+                                              } 
+                                    });
+        
+                                    </script>';
+        
+                            }else{
+        
+                                $_SESSION["validarSesion"] = "ok";
+                                $_SESSION["id"] = $respuesta["id"];
+                                $_SESSION["nombre"] = $respuesta["nombre"];
+                                $_SESSION["apellido"] = $respuesta["apellido"];
+                                $_SESSION["foto"] = $respuesta["foto"];
+                                $_SESSION["email"] = $respuesta["email"];
+                                $_SESSION["password"] = $respuesta["password"];
+                                $_SESSION["modo"] = $respuesta["modo"];
+        
+                                echo '<script>
+                                    
+                                    window.location = localStorage.getItem("rutaActual");
+        
+                                </script>';
+        
+                            }
+        
+                        }else{
+        
+                            echo'<script>
+        
+                                    swal({
+                                          title: "¡ERROR AL INGRESAR!",
+                                          text: "¡Por favor revise que el email exista o la contraseña coincida con la registrada!",
+                                          type: "error",
+                                          confirmButtonText: "Cerrar",
+                                          closeOnConfirm: false
+                                    },
+        
+                                    function(isConfirm){
+                                             if (isConfirm) {	   
+                                                window.location = localStorage.getItem("rutaActual");
+                                              } 
+                                    });
+        
+                                    </script>';
+        
+                        }
+        
+                    }else{
+        
+                        echo '<script> 
+        
+                                swal({
+                                      title: "¡ERROR!",
+                                      text: "¡Error al ingresar al sistema, no se permiten caracteres especiales!",
+                                      type:"error",
+                                      confirmButtonText: "Cerrar",
+                                      closeOnConfirm: false
+                                    },
+        
+                                    function(isConfirm){
+        
+                                        if(isConfirm){
+                                            history.back();
+                                        }
+                                });
+        
+                        </script>';
+        
+                    }
+        
+                }
+            }
+           
+        }
+		
+
+	}
+    //Olvido de contraseña
+    public function ctrOlvidoPassword(){
+
+		if(isset($_POST["passEmail"])){
+
+			if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["passEmail"])){
+
+				/*=============================================
+				GENERAR CONTRASEÑA ALEATORIA
+				=============================================*/
+
+				function generarPassword($longitud){
+
+					$key = "";
+					$pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
+
+					$max = strlen($pattern)-1;
+
+					for($i = 0; $i < $longitud; $i++){
+
+						$key .= $pattern{mt_rand(0,$max)};
+
+					}
+
+					return $key;
+
+				}
+
+				$nuevaPassword = generarPassword(11);
+
+				$encriptar = crypt($nuevaPassword, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+				$tabla = "usuarios";
+
+				$item1 = "email";
+				$valor1 = $_POST["passEmail"];
+
+				$respuesta1 = ModeloUsuarios::mdlMostrarUsuario($tabla, $item1, $valor1);
+
+				if($respuesta1){
+
+					$id = $respuesta1["id"];
+					$item2 = "password";
+					$valor2 = $encriptar;
+
+					$respuesta2 = ModeloUsuarios::mdlActualizarUsuario($tabla, $id, $item2, $valor2);
+
+					if($respuesta2  == "ok"){
+
+						/*=============================================
+						CAMBIO DE CONTRASEÑA
+						=============================================*/
+
+						date_default_timezone_set("America/Bogota");
+
+						$url = Ruta::ctrRuta();	
+
+						$mail = new PHPMailer;
+
+						$mail->CharSet = 'UTF-8';
+
+						$mail->isMail();
+
+						$mail->setFrom('cursos@tutorialesatualcance.com', 'Tutoriales a tu Alcance');
+
+						$mail->addReplyTo('cursos@tutorialesatualcance.com', 'Tutoriales a tu Alcance');
+
+						$mail->Subject = "Solicitud de nueva contraseña";
+
+						$mail->addAddress($_POST["passEmail"]);
+
+						$mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
+	
+								<center>
+									
+									<img style="padding:20px; width:10%" src="http://tutorialesatualcance.com/tienda/logo.png">
+
+								</center>
+
+								<div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
+								
+									<center>
+									
+									<img style="padding:20px; width:15%" src="http://tutorialesatualcance.com/tienda/icon-pass.png">
+
+									<h3 style="font-weight:100; color:#999">SOLICITUD DE NUEVA CONTRASEÑA</h3>
+
+									<hr style="border:1px solid #ccc; width:80%">
+
+									<h4 style="font-weight:100; color:#999; padding:0 20px"><strong>Su nueva contraseña: </strong>'.$nuevaPassword.'</h4>
+
+									<a href="'.$url.'" target="_blank" style="text-decoration:none">
+
+									<div style="line-height:60px; background:#0aa; width:60%; color:white">Ingrese nuevamente al sitio</div>
+
+									</a>
+
+									<br>
+
+									<hr style="border:1px solid #ccc; width:80%">
+
+									<h5 style="font-weight:100; color:#999">Si no se inscribió en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
+
+									</center>
+
+								</div>
+
+							</div>');
+
+						$envio = $mail->Send();
+
+						if(!$envio){
+
+							echo '<script> 
+
+								swal({
+									  title: "¡ERROR!",
+									  text: "¡Ha ocurrido un problema enviando cambio de contraseña a '.$_POST["passEmail"].$mail->ErrorInfo.'!",
+									  type:"error",
+									  confirmButtonText: "Cerrar",
+									  closeOnConfirm: false
+									},
+
+									function(isConfirm){
+
+										if(isConfirm){
+											history.back();
+										}
+								});
+
+							</script>';
+
+						}else{
+
+							echo '<script> 
+
+								swal({
+									  title: "¡OK!",
+									  text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '.$_POST["passEmail"].' para su cambio de contraseña!",
+									  type:"success",
+									  confirmButtonText: "Cerrar",
+									  closeOnConfirm: false
+									},
+
+									function(isConfirm){
+
+										if(isConfirm){
+											history.back();
+										}
+								});
+
+							</script>';
+
+						}
+
+					}
+
+				}else{
+
+					echo '<script> 
+
+						swal({
+							  title: "¡ERROR!",
+							  text: "¡El correo electrónico no existe en el sistema!",
+							  type:"error",
+							  confirmButtonText: "Cerrar",
+							  closeOnConfirm: false
+							},
+
+							function(isConfirm){
+
+								if(isConfirm){
+									history.back();
+								}
+						});
+
+					</script>';
+
+
+				}
+
+			}else{
+
+				echo '<script> 
+
+						swal({
+							  title: "¡ERROR!",
+							  text: "¡Error al enviar el correo electrónico, está mal escrito!",
+							  type:"error",
+							  confirmButtonText: "Cerrar",
+							  closeOnConfirm: false
+							},
+
+							function(isConfirm){
+
+								if(isConfirm){
+									history.back();
+								}
+						});
+
+				</script>';
+
+			}
+
+		}
+
+	}
+    //Registro con redes sociales
+    static public function ctrRegistroRedesSociales($datos){
+        $tabla = "usuarios";
+        $respuesta1 = ModeloUsuarios::mdlRegistroUsuario($tabla, $datos);
+        if($respuesta1 =="ok"){
+            $item = "email";
+            $valor = $datos["email"];
+
+            $respuesta2 = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+            if($respuesta2["modo"]=="facebook"){
+
+                $_SESSION["validarSesion"] = "ok";
+                $_SESSION["id"] = $respuesta2["id"];
+                $_SESSION["nombre"] = $respuesta2["nombre"];
+                $_SESSION["foto"] = $respuesta2["foto"];
+                $_SESSION["email"] = $respuesta2["email"];
+                $_SESSION["password"] = $respuesta2["password"];
+                $_SESSION["modo"] = $respuesta2["modo"];
+                echo "ok";
+            }
+        }
+    }
+
+    //Actualizar perfil
+    public function ctrActualizarPerfil(){
+        if(isset($_POST["editarNombre"])){
+            if($_POST["editarPassword"]==""){
+                $password = $_POST["editarPassword"];
+
+            }else{
+                $password = crypt($_POST["editarPassword"],'$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+            }
+            $datos = array(
+        "nombre" =>$_POST["editarNombre"],
+        "email"=>$_POST["editarEmail"], 
+        "password"=> $password,
+        "foto"=>"",
+        "id"=>$_POST["idUsuario"]);
+        $tabla = "usuarios";
+        $respuesta = ModeloUsuarios::mdlActualizarPerfil($tabla, $datos);
+
+        if($respuesta == "ok"){
+            
+            $_SESSION["validarSesion"] = "ok";
+            $_SESSION["id"] = $respuesta["id"];
+            $_SESSION["nombre"] = $respuesta["nombre"];
+            $_SESSION["foto"] = $respuesta["foto"];
+            $_SESSION["email"] = $respuesta["email"];
+            $_SESSION["password"] = $respuesta["password"];
+            $_SESSION["modo"] = $respuesta["modo"];
+            echo '<script> 
+
+						swal({
+							  title: "¡OK!",
+							  text: "¡Su cuenta ha sido actualizada correctamente!",
+							  type:"success",
+							  confirmButtonText: "Cerrar",
+							  closeOnConfirm: false
+							},
+
+							function(isConfirm){
+
+								if(isConfirm){
+									history.back();
+								}
+						});
+
+					</script>';
+        }
+        }
+    }
+}
+
+
+
+
