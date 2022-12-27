@@ -211,6 +211,7 @@ class ControladorUsuarios{
                                 $_SESSION["validarSesion"] = "ok";
                                 $_SESSION["id"] = $respuesta["id"];
                                 $_SESSION["nombre"] = $respuesta["nombre"];
+                                $_SESSION["apellido"] = $respuesta["apellido"];
                                 $_SESSION["foto"] = $respuesta["foto"];
                                 $_SESSION["email"] = $respuesta["email"];
                                 $_SESSION["password"] = $respuesta["password"];
@@ -493,6 +494,7 @@ class ControladorUsuarios{
 
             $respuesta2 = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
             if($respuesta2["modo"]=="facebook"){
+
                 $_SESSION["validarSesion"] = "ok";
                 $_SESSION["id"] = $respuesta2["id"];
                 $_SESSION["nombre"] = $respuesta2["nombre"];
@@ -502,6 +504,56 @@ class ControladorUsuarios{
                 $_SESSION["modo"] = $respuesta2["modo"];
                 echo "ok";
             }
+        }
+    }
+
+    //Actualizar perfil
+    public function ctrActualizarPerfil(){
+        if(isset($_POST["editarNombre"])){
+            if($_POST["editarPassword"]==""){
+                $password = $_POST["editarPassword"];
+
+            }else{
+                $password = crypt($_POST["editarPassword"],'$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+            }
+            $datos = array(
+        "nombre" =>$_POST["editarNombre"],
+        "email"=>$_POST["editarEmail"], 
+        "password"=> $password,
+        "foto"=>"",
+        "id"=>$_POST["idUsuario"]);
+        $tabla = "usuarios";
+        $respuesta = ModeloUsuarios::mdlActualizarPerfil($tabla, $datos);
+
+        if($respuesta == "ok"){
+            
+            $_SESSION["validarSesion"] = "ok";
+            $_SESSION["id"] = $respuesta["id"];
+            $_SESSION["nombre"] = $respuesta["nombre"];
+            $_SESSION["foto"] = $respuesta["foto"];
+            $_SESSION["email"] = $respuesta["email"];
+            $_SESSION["password"] = $respuesta["password"];
+            $_SESSION["modo"] = $respuesta["modo"];
+            echo '<script> 
+
+						swal({
+							  title: "¡OK!",
+							  text: "¡Su cuenta ha sido actualizada correctamente!",
+							  type:"success",
+							  confirmButtonText: "Cerrar",
+							  closeOnConfirm: false
+							},
+
+							function(isConfirm){
+
+								if(isConfirm){
+									history.back();
+								}
+						});
+
+					</script>';
+        }
         }
     }
 }

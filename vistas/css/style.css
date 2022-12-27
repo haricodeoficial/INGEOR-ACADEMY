@@ -1,6 +1,7 @@
 :root{
     
     --azul: #0071C0;
+    --red: #E45E4C;
 }
 
 body {
@@ -136,6 +137,48 @@ body {
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+
+/*BUTTON 7*/
+.button-7 {
+  align-items: center;
+  background-color: var(--red);
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-flex;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  width: 100%;
+
+}
+
+.button-7:hover,
+.button-7:focus {
+  background-color: var(--red);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-7:hover {
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.button-7:active {
+  background-color: var(--red);
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
 }
 .btn-search{
@@ -626,5 +669,15 @@ padding-top: 100px;
   padding: 15px 15px 15px 150px!important;
 }
 .banner-perfil{
-  
+  background: #000;
+  height: 50vh;
+  width: 100%;
+}
+
+
+.img-circle-perfil{
+width: 50%;
+}
+.content{
+  padding-top: 40px;
 }
