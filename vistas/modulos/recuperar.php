@@ -25,48 +25,30 @@ if(isset($_SESSION["validarSesion"])){
             <div class="col-lg-6 col-md-8 login-box">
         
                 <div class="col-lg-12 login-title">
-                    INICIAR SESIÓN
+                    RECUPERAR CONTRASEÑA
                 </div>
                 <form method="post">
-                    
                 <div class="col-lg-12 login-form">
                     <div class="col-lg-12 login-form">
                         <form method="post">
                             <div class="form-group">
-                                <div class="facebook" id="btnFacebookRegistro">
-                                <a href="" style="padding:15px;color:#fff; background:#627AAC;">
-                                
-                                <i class="fa-brands fa-facebook"></i>
-                                    Iniciar con Facebook
-                                </a>
-
-                                </div>
-                           
-                            </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="form-control-label">Correo</label>
-                                <input type="email" class="form-control" name="ingEmail"id="ingEmail" required>
+                                <input type="email" class="form-control" name="passEmail"id="passEmail" required>
                             </div>
-                            <div class="form-group">
-                                <label class="form-control-label">Contraseña</label>
-                                <input type="password" class="form-control" name="ingPassword" id="ingPassword" required>
-                            </div>
-
                             <div class="col-lg-12 loginbttm">
                                 <div class="col-lg-6 login-btm login-text">
                                     <!-- Error Message -->
                                 </div>
                                 <div class="col-lg-6 login-btm login-button justify-content-center" align="center">
                                     <?php
-                                        $ingreso = new ControladorUsuarios();
-                                        $ingreso ->ctrIngresoUsuario();
+                                        $password = new ControladorUsuarios();
+                                        $password ->ctrOlvidoPassword();
                                     ?>
                                     <div class="g-recaptcha" data-sitekey="6Lf3FKwjAAAAACI_BAt8OVuU-msFyZ3SntqS0FCE"></div>
 
                                     <input type="submit" class="btn btn-outline-primary btnIngreso" value="ENVIAR">
                                     <center>
-                                       <a href="recuperar">¿Olvidaste tu contraseña?</a> 
+                                       <a href="registrar">¿No tiene una cuenta registrada?</a> 
                                     </center>
                                 </div>
                             </div>

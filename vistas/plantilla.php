@@ -97,10 +97,11 @@ $url = ruta::ctrRuta();
         }
         else if($valor == "iniciar-sesion"){
           include "modulos/iniciar-sesion.php";
-        }else if($valor == "buscador" || $valor == "verificar"){
+        }else if($valor =="recuperar"){
+          include "modulos/recuperar.php";
+        }else if($valor == "buscador" || $valor == "verificar" ||$valor == "salir" || $valor == "perfil"){
           include "modulos/".$rutas[0].".php";
         }
-  
         else{
           include "modulos/error404.php"; 
   
@@ -181,12 +182,36 @@ var starRatingControl = new StarRating('.star-rating',{
 
 });
 </script>
+<script async src="https://www.google.com/recaptcha/api.js"></script>
 <script src="<?php echo $url;?>vistas/js/jBox.all.min.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/demo.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/check.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/usuarios.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/buscador.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/main.js" type="text/javascript"></script>
+<script src="<?php echo $url;?>vistas/js/registroFacebook.js" type="text/javascript"></script>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '721663262640969',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.10'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
 <script>
 jQuery(document).ready(function($) {

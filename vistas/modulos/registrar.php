@@ -13,6 +13,12 @@
                     <div class="col-lg-12 login-form">
                         <form>
                             <div class="row">
+                            <div class="col-sm-6 col-xs-12 facebook" id="btnFacebookRegistro" style="padding:15px;color:#fff; background:#627AAC;">
+                                <i class="fa-brands fa-facebook"></i>
+                                    Registro con Facebook
+                            </div>
+                            <div class="row"style="padding-top:20px; ">
+                               
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-control-label">Nombre</label>

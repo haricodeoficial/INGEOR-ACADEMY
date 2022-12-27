@@ -1,7 +1,8 @@
 <?php
 $urlServidor = ruta::ctrRutaServidor();
 $url = Ruta::ctrRuta();
-var_dump(isset($_SESSION["validarSesion"]));
+
+session_start();
 
 if(isset($_SESSION["validarSesion"])){
 
@@ -10,7 +11,7 @@ if(isset($_SESSION["validarSesion"])){
 		echo '<script>
 		
 		
-			localStorage.setItem("usuario","'.$_SESSION["id"].'");
+			localStorage.setItem("usuario.","'.$_SESSION["id"].'");
 
 		</script>';
 
@@ -40,10 +41,9 @@ if(isset($_SESSION["validarSesion"])){
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
                <?php
-               var_dump(isset($_SESSION["validarSesion"]));
                   if(isset($_SESSION["validarSesion"])){
                      if($_SESSION["validarSesion"] == "ok"){
-                         if($_SESSION["modo"] == "directo"){
+                         if($_SESSION["modo"] == "directo"){ 
                            echo' <li class="nav-item cart">
                            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                            </li>
@@ -52,19 +52,30 @@ if(isset($_SESSION["validarSesion"])){
                            </li>';
                            if($_SESSION["foto"] != ""){
                               echo'<li class="nav-item">
-                              <img class="img-circle" src="'.$url.$_SESSION["foto"].'" width="10%";
+                              <img class="img-circle" src="'.$url.$_SESSION["foto"].'" style="width:10%;">
+                              <p>'.$_SESSION["nombre"].'</p>
                               </li>';
                            }else{
-                              echo'<li>
+                              echo'<li class="nav-item" style="width:max-content;">
                               <img class="img-circle" src="'.$urlServidor.'vistas/img/usuarios/default/perfil.png">
+
+                              <p style="color:#fff; font-size:10px;">'.$_SESSION["nombre"].'</p>
+
                               </li>';
                            }
 
-                           echo '
-                           <li class="nav-item">|<a href="'.$url.'perfil">Ver perfil</a>|</li>
-                           <li><a href="'.$url.'salir">Salir</a></li>
-                           ';
-                         }  
+                         
+                         }else if($_SESSION["modo"] =="facebook"){
+                           echo'<li class="nav-item">
+                              <img class="img-circle" src="'.$url.$_SESSION["foto"].'" style="width:10%;">
+                              <p>'.$_SESSION["nombre"].'</p>
+                              </li>';
+                         }
+                         echo '
+                         <li class="nav-item"><a href="'.$url.'perfil"class="button-5" style="width:115px;margin: 0px 0px 0px 15px;">Ver perfil</a></li>
+                         <li class="nav-item"><a href="'.$url.'salir" class="button-6" style="width:100px;">Salir</a></li>
+
+                         ';
                      }
 
                   }else{
