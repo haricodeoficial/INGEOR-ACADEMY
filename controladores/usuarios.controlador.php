@@ -508,34 +508,124 @@ class ControladorUsuarios{
     }
 
     //Actualizar perfil
-    public function ctrActualizarPerfil(){
-        if(isset($_POST["editarNombre"])){
-            if($_POST["editarPassword"]==""){
-                $password = $_POST["editarPassword"];
+    
+	public function ctrActualizarPerfil(){
 
-            }else{
-                $password = crypt($_POST["editarPassword"],'$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+		if(isset($_POST["editarNombre"])){
 
-            }
-            $datos = array(
-        "nombre" =>$_POST["editarNombre"],
-        "email"=>$_POST["editarEmail"], 
-        "password"=> $password,
-        "foto"=>"",
-        "id"=>$_POST["idUsuario"]);
-        $tabla = "usuarios";
-        $respuesta = ModeloUsuarios::mdlActualizarPerfil($tabla, $datos);
+			/*=============================================
+			VALIDAR IMAGEN
+			=============================================*/
 
-        if($respuesta == "ok"){
-            
-            $_SESSION["validarSesion"] = "ok";
-            $_SESSION["id"] = $respuesta["id"];
-            $_SESSION["nombre"] = $respuesta["nombre"];
-            $_SESSION["foto"] = $respuesta["foto"];
-            $_SESSION["email"] = $respuesta["email"];
-            $_SESSION["password"] = $respuesta["password"];
-            $_SESSION["modo"] = $respuesta["modo"];
-            echo '<script> 
+			$ruta = $_POST["fotoUsuario"];
+
+			if(isset($_FILES["datosImagen"]["tmp_name"]) && !empty($_FILES["datosImagen"]["tmp_name"])){
+
+				/*=============================================
+				PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
+				=============================================*/
+
+				$directorio = "vistas/img/usuarios/".$_POST["idUsuario"];
+
+				if(!empty($_POST["fotoUsuario"])){
+                    unlink($_POST["fotoUsuario"]);
+
+					
+				
+				}else{
+
+					mkdir($directorio, 0755,True);
+
+				}
+
+				/*=============================================
+				GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+				=============================================*/
+
+				list($ancho, $alto) = getimagesize($_FILES["datosImagen"]["tmp_name"]);
+
+				$nuevoAncho = 500;
+				$nuevoAlto = 500;
+
+				$aleatorio = mt_rand(100, 999);
+
+				if($_FILES["datosImagen"]["type"] == "image/jpeg"){
+
+					$ruta = "vistas/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".jpg";
+
+					/*=============================================
+					MOFICAMOS TAMAÑO DE LA FOTO
+					=============================================*/
+
+
+					$origen = imagecreatefromjpeg($_FILES["datosImagen"]["tmp_name"]);
+
+					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+					imagejpeg($destino, $ruta);
+
+				}
+
+				if($_FILES["datosImagen"]["type"] == "image/png"){
+
+					$ruta = "vistas/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".png";
+
+					/*=============================================
+					MOFICAMOS TAMAÑO DE LA FOTO
+					=============================================*/
+
+					$origen = imagecreatefrompng($_FILES["datosImagen"]["tmp_name"]);
+
+					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+					imagealphablending($destino, FALSE);
+    			
+					imagesavealpha($destino, TRUE);
+
+					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+					imagepng($destino, $ruta);
+
+				}
+
+			}
+
+			if($_POST["editarPassword"] == ""){
+
+				$password = $_POST["passUsuario"];
+
+			}else{
+
+				$password = crypt($_POST["editarPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+			}
+
+			
+
+			$datos = array("nombre" => $_POST["editarNombre"],
+						   "email" => $_POST["editarEmail"],
+						   "password" => $password,
+						   "foto" => $ruta,
+						   "id" => $_POST["idUsuario"]);
+
+
+			$tabla = "usuarios";
+
+			$respuesta = ModeloUsuarios::mdlActualizarPerfil($tabla, $datos);
+
+			if($respuesta == "ok"){
+
+				$_SESSION["validarSesion"] = "ok";
+				$_SESSION["id"] = $datos["id"];
+				$_SESSION["nombre"] = $datos["nombre"];
+				$_SESSION["foto"] = $datos["foto"];
+				$_SESSION["email"] = $datos["email"];
+				$_SESSION["password"] = $datos["password"];
+				$_SESSION["modo"] = $_POST["modoUsuario"];
+
+				echo '<script> 
 
 						swal({
 							  title: "¡OK!",
@@ -552,10 +642,15 @@ class ControladorUsuarios{
 								}
 						});
 
-					</script>';
-        }
-        }
-    }
+				</script>';
+
+
+			}
+
+		}
+
+	}
+
 }
 
 

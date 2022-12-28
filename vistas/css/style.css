@@ -681,3 +681,19 @@ width: 50%;
 .content{
   padding-top: 40px;
 }
+
+#subirImagen{
+  display: block;
+  margin: 20px 0px;
+  border: 2px dotted #ccc;
+  overflow: hidden;
+  padding: 40px;
+  cursor:pointer;
+}
+#subirImagen img{
+  width: 100%;
+  padding: 10px;
+}
+#subirImagen #datosImagen{
+  height: 65px;
+}
