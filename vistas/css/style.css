@@ -614,6 +614,9 @@ label {
     padding-top: 50px;
     font-size: 50px!important;
     }
+    .responsive-logo{
+      width: 60%!important;
+    }
 
 }
 .swiper-principal{

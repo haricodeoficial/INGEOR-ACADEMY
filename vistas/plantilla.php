@@ -35,7 +35,6 @@ $url = ruta::ctrRuta();
 <!--GOOGLE FONTS-->
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
 <link rel="stylesheet" type="text/css" href="<?php echo $url;?>vistas/css/jBox.all.css">
@@ -118,6 +117,8 @@ $url = ruta::ctrRuta();
   <input type="hidden" value="<?php echo $url; ?>" id="rutaOculta">
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 
 
@@ -238,7 +239,9 @@ var starRatingControl = new StarRating('.star-rating',{
    }(document, 'script', 'facebook-jssdk'));
 </script>
 <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
-<script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
 jQuery(document).ready(function($) {
 	$('#search-dropdown a').click(function(){
 		$('#search-btn').html($(this).text()).val($(this).text());
@@ -246,6 +249,8 @@ jQuery(document).ready(function($) {
 	});
 });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <!--FIN - ETIQUETAS JS-->
 
 </html>

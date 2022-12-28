@@ -21,10 +21,12 @@ exit();
                 if($_SESSION["foto"] != ""){
                     echo'
                     <img class="img-circle-perfil" src="'.$url.$_SESSION["foto"].'">
-                    <button type="button" id="btnCambiarFoto"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <h1 style="color:#000; font-size:10px;">'.$_SESSION["nombre"].'</h1>
+                    <h1 style="color:#000; font-size:30px;">'.$_SESSION["nombre"].'</h1>
                     <h4 style="color:#000;">'.$_SESSION["email"].'</h4>
+                    <hr>
+                    <h2>Cambiar foto: </h2>
                     <div id="subirImagen">
+                 
                     <input type="file" class="form-control" id="datosImagen" name="datosImagen">
                     <img class="previsualizar">
                     </div>
@@ -33,10 +35,12 @@ exit();
                 }else{
                     echo'
                     <img class="img-circle-perfil" src="'.$urlServidor.'vistas/img/usuarios/default/perfil.png">
-                    <button type="button" id="btnCambiarFoto"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <h1 style="color:#000;">'.$_SESSION["nombre"].'</h1>
+                    <h1 style="color:#000; font-size:30px;">'.$_SESSION["nombre"].'</h1>
                     <h4 style="color:#000;">'.$_SESSION["email"].'</h4>
+                    <hr>
+                    <h2>Cambiar foto: </h2>
                     <div id="subirImagen">
+              
                     <input type="file" class="form-control" id="datosImagen" name="datosImagen">
                     <img class="previsualizar">
                     </div>
@@ -48,6 +52,8 @@ exit();
             </div>
             <div class="col-md-7">
                 <h2>Mi aprendizaje</h2>
+                <hr>
+
                 <section id="mis-compras">
                     <?php
                        $item = "id_usuario";
@@ -82,30 +88,11 @@ exit();
                                           </div>
                                             <p>Precio: <strong>'.$value2["precio"].'$</strong></p> 
                                             <p>Fecha inicio: '.$value2["fecha-inicio"].'</p>
-                                        <select class="star-rating">
-                                            <option value="">Select a rating</option>
-                                            <option value="5">Excellent</option>
-                                            <option value="4">Very Good</option>
-                                            <option value="3">Average</option>
-                                            <option value="2">Poor</option>
-                                            <option value="1">Terrible</option>
-                                        </select>
-                                        <div class="cart-heart container">
-                                          <div class="row">
-                                            <div class="col-md-6">
-                                            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                                             </div>
-                                            <div class="col-md-6">
-                                            <a href="#"><i class="fa-solid fa-heart"></i></a>
-                        
-                                            </div>
-                                          </div>
-                                        </div>
-                                      
-                        
                                         </div>
                                     </div>
                                     </a>
+                                    <button class="btn btn-default">Ir al curso</button>
+
                                     </div>
                                     
                                     '; 
@@ -120,7 +107,6 @@ exit();
                         }
                     ?>
                 </section>
-                <hr>
                 <h2>Mi lista de deseos</h2>
                 <hr>
                 <h2>Editar perfil</h2>
