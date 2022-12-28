@@ -118,7 +118,12 @@ function registroUsuario(){
         $("#regConfirmacion").parent().before('<div class="alert alert-warning"><strong>ATENCIÓN: </strong>La contraseña con coincide</div>');
         return false; 
     }
-
+    var cambiarPass = $("#editarPassword").val();
+    var cambiarPassConfirmar = $("#confirmarPassword").val();
+    if(cambiarPass != cambiarPassConfirmar){
+        $("#confirmarPassword").parent().before('<div class="alert alert-warning"><strong>ATENCIÓN: </strong>La contraseña con coincide</div>');
+        return false; 
+    }
     //Validar políticas de privacidad
     var politicas = $("#regPoliticas:checked").val();
 
@@ -129,3 +134,51 @@ function registroUsuario(){
     }
     return true; 
 }
+
+//Cambiar foto
+$("#datosImagen").change(function(){
+    var imagen = this.files[0];
+    //Validamos el formato de la imagen
+    if(imagen["type"] != "image/jpeg" && imagen["type"]!="image/png"){
+        $("#datosImagen").val("");
+        swal({
+            title: "Error al subir la imagen",
+            text: "¡La imagen debe estar en formato JPG!",
+            type:"error",
+            confirmButtonText: "Cerrar",
+            closeOnConfirm: false
+          },
+
+          function(isConfirm){
+
+              if(isConfirm){
+                  window.location = rutaOculta+"perfil";
+              }
+      });
+    }
+    else if(Number(imagen["size"]) > 2000000){
+        $("#datosImagen").val("");
+        swal({
+            title: "Error al subir la imagen",
+            text: "¡La imagen no debe pesar más de 2MB!",
+            type:"error",
+            confirmButtonText: "Cerrar",
+            closeOnConfirm: false
+          },
+
+          function(isConfirm){
+
+              if(isConfirm){
+                  window.location = rutaOculta+"perfil";
+              }
+      });
+    }else{
+       var datosImagen = new FileReader;
+       datosImagen.readAsDataURL(imagen); 
+       $(datosImagen).on("load",function(event){
+        var rutaImagen = event.target.result; 
+        $(".previsualizar").attr("src",rutaImagen);
+       });
+
+    }
+})
