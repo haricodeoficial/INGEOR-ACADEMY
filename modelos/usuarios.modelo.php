@@ -81,25 +81,16 @@ class ModeloUsuarios{
 
 		$stmt = null;
     }
-    static public function mdlEliminarUsuario($tabla, $id){
 
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+    //Mostrar Compras
+    static public function mdlMostrarCompras($tabla, $item, $valor){
+		$stmt = conexionBaseDeDatos::conectar()->prepare("SELECT *FROM $tabla WHERE $item = :$item");
+        $stmt->bindParam(":".$item, $valor,PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt -> fetchAll();
+        $stmt-> close();
+        $stmt = null; 
 
-		$stmt -> bindParam(":id", $id, PDO::PARAM_INT);
-
-		if($stmt -> execute()){
-
-			return "ok";
-
-		}else{
-
-			return "error";
-
-		}
-
-		$stmt-> close();
-
-		$stmt = null;
 
 	}
 }

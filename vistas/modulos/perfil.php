@@ -48,6 +48,78 @@ exit();
             </div>
             <div class="col-md-7">
                 <h2>Mi aprendizaje</h2>
+                <section id="mis-compras">
+                    <?php
+                       $item = "id_usuario";
+                       $valor = $_SESSION["id"];
+   
+                       $compras = ControladorUsuarios::ctrMostrarCompras($item, $valor);
+                       
+                        if(!$compras){
+                            echo'<h1>¡Oops!</h1>
+                            <h2>Aún no tienes compras realizadas en esta tienda</h2>
+                            '; 
+                        }else{
+                            foreach ($compras as $key => $value1) {
+                                $ordenar = "id";
+                                $item = "id";
+                                $valor = $value1["id_producto"];
+                                $productos = controladorAcademy::ctrListarCursos($ordenar, $item, $valor);
+                                echo' <div class="row">';
+                                foreach($productos as $key =>$value2){
+                                    echo '
+                                   
+                                    <div class="col-md-4">
+                                    <a class="card-curso" href="'.$value2["ruta"].'" > 
+                                    <div class="container justify-content-center" id="card-tooltip" aria-describedby="tooltip">
+                                        <div class="row">
+                                          <div class="col-md-12">
+                                            
+                                            <img class="img-curso " src="'.$value2["imagen"].'" alt="'.$value2["imagen"].'">
+                                          </div> 
+                                          <div class="col-md-12">            
+                                            <h4 class="titulo-curso">'.$value2["nombre"].'</h4>
+                                          </div>
+                                            <p>Precio: <strong>'.$value2["precio"].'$</strong></p> 
+                                            <p>Fecha inicio: '.$value2["fecha-inicio"].'</p>
+                                        <select class="star-rating">
+                                            <option value="">Select a rating</option>
+                                            <option value="5">Excellent</option>
+                                            <option value="4">Very Good</option>
+                                            <option value="3">Average</option>
+                                            <option value="2">Poor</option>
+                                            <option value="1">Terrible</option>
+                                        </select>
+                                        <div class="cart-heart container">
+                                          <div class="row">
+                                            <div class="col-md-6">
+                                            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                                             </div>
+                                            <div class="col-md-6">
+                                            <a href="#"><i class="fa-solid fa-heart"></i></a>
+                        
+                                            </div>
+                                          </div>
+                                        </div>
+                                      
+                        
+                                        </div>
+                                    </div>
+                                    </a>
+                                    </div>
+                                    
+                                    '; 
+                                    echo'</div>';
+                                }
+                               
+
+                            }
+                                
+                             
+                            
+                        }
+                    ?>
+                </section>
                 <hr>
                 <h2>Mi lista de deseos</h2>
                 <hr>

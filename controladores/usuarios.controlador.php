@@ -651,6 +651,13 @@ class ControladorUsuarios{
 
 	}
 
+    //Mostrar Compras
+    static public function ctrMostrarCompras($item, $valor){
+        $tabla = "compras";
+        $respuesta = ModeloUsuarios::mdlMostrarCompras($tabla,$item,$valor);
+        return $respuesta;
+    }
+
 }
 
 

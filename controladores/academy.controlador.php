@@ -23,12 +23,22 @@ class controladorAcademy{
         $respuesta = modeloAcademy::mdlBuscarCursos($tabla, $busqueda,$ordenar,$modo,$base,$tope);
         return $respuesta;
     }
+    static public function ctrListarCursos($ordenar, $item, $valor){
+
+		$tabla = "cursos";
+
+		$respuesta = modeloAcademy::mdlListarCursos($tabla, $ordenar, $item, $valor);
+
+		return $respuesta;
+
+	}
     static public function ctrListarCursosBusqueda($busqueda){
         $tabla = "cursos"; 
         $respuesta = modeloAcademy::mdlListarCursosBusqueda($tabla, $busqueda);
         return $respuesta; 
 
     }
+    
     static public function mostrarComentarios($item,$valor){
         $tabla = "comentarios"; 
         $respuesta = modeloAcademy::modeloDatos($tabla,$item,$valor);
