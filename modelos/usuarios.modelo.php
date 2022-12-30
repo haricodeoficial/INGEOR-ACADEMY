@@ -93,5 +93,123 @@ class ModeloUsuarios{
 
 
 	}
+    static public function mdlBuscarUsuario($tabla, $valor){
+        $stmt = conexionBaseDeDatos::conectar()->prepare("SELECT *FROM $tabla WHERE id = :id");
+        $stmt->bindParam(":id",$valor,PDO::PARAM_INT);
+        $stmt -> execute();
+		return $stmt ->fetchAll();
+		$stmt -> close();
+		$stmt = null;
+    }
+     //Mostrar Comentarios
+     static public function mdlMostrarComentariosPerfil($tabla, $datos){
+        if($datos["idUsuario"] != ""){
+            $stmt = conexionBaseDeDatos::conectar()->prepare("SELECT *FROM $tabla WHERE id_usuario = :id_usuario AND id_producto = :id_producto");
+            $stmt->bindParam(":id_usuario",$datos["idUsuario"],PDO::PARAM_STR);
+            $stmt->bindParam(":id_producto",$datos["idProducto"],PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt -> fetchAll();
+        }else{
+            $stmt = conexionBaseDeDatos::conectar()->prepare("SELECT *FROM $tabla WHERE id_producto = :id_producto");
+            $stmt->bindParam(":id_usuario",$datos["idUsuario"],PDO::PARAM_STR);
+            $stmt->bindParam(":id_producto",$datos["idProducto"],PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt -> fetchAll();
+        }
+		
+        $stmt-> close();
+        $stmt = null; 
+
+
+	}
+
+    //Actualizar Comentario
+    static public function mdlActualizarComentario($tabla, $datos){
+
+		$stmt = conexionBaseDeDatos::conectar()->prepare("UPDATE $tabla SET rating = :rating, comentario = :comentario WHERE id = :id");
+        
+
+        $stmt->bindParam(":rating", $datos["rating"], PDO::PARAM_INT);
+		$stmt->bindParam(":comentario", $datos["comentario"], PDO::PARAM_STR);
+		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+
+	}
+
+    //Agregar a lista de deseos
+    static public function mdlAgregarDeseo($tabla, $datos){
+
+		$stmt = conexionBaseDeDatos::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto) VALUES (:id_usuario, :id_producto)");
+
+		$stmt->bindParam(":id_usuario", $datos["idUsuario"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_producto", $datos["idProducto"], PDO::PARAM_INT);	
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+
+	}
+        //Mostrar Lista de deseos
+        static public function mdlMostrarDeseos($tabla, $item){
+
+            $stmt = conexionBaseDeDatos::conectar()->prepare("SELECT * FROM $tabla WHERE id_usuario = :id_usuario ORDER BY id DESC");
+    
+            $stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
+    
+            $stmt -> execute();
+    
+            return $stmt -> fetchAll();
+    
+            $stmt -> close();
+    
+            $stmt = null;
+    
+        }
+        //Quitar producto de lista de deseos
+        static public function mdlQuitarDeseo($tabla, $datos){
+
+            $stmt = conexionBaseDeDatos::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+    
+            $stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
+    
+            if($stmt -> execute()){
+    
+                return "ok";
+    
+            }else{
+    
+                return "error";
+    
+            }
+    
+            $stmt-> close();
+    
+            $stmt = null;
+    
+        }
+
 }
 

@@ -50,6 +50,8 @@ class controladorAcademy{
         $respuesta = modeloAcademy::modeloDatos($tabla, $item,$valor);
         return $respuesta; 
     } 
+    
+	
 }
 
 ?>

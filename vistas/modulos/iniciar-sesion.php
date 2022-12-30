@@ -32,18 +32,13 @@ if(isset($_SESSION["validarSesion"])){
                 <div class="col-lg-12 login-form">
                     <div class="col-lg-12 login-form">
                         <form method="post">
-                            <div class="form-group">
-                                <div class="facebook" id="btnFacebookRegistro">
-                                <a href="" style="padding:15px;color:#fff; background:#627AAC;">
-                                
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-12 facebook" id="btnFacebookRegistro" style="padding:15px;color:#fff; background:#627AAC;">
                                 <i class="fa-brands fa-facebook"></i>
-                                    Iniciar con Facebook
-                                </a>
-
-                                </div>
-                           
+                                    Registro con Facebook
                             </div>
-                            </div>
+                            <div class="row"style="padding-top:20px; ">
+                               
                             <div class="form-group">
                                 <label class="form-control-label">Correo</label>
                                 <input type="email" class="form-control" name="ingEmail"id="ingEmail" required>

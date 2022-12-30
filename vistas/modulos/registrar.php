@@ -11,7 +11,7 @@
           
                 <div class="col-lg-12 login-form">
                     <div class="col-lg-12 login-form">
-                        <form>
+                        
                             <div class="row">
                             <div class="col-sm-6 col-xs-12 facebook" id="btnFacebookRegistro" style="padding:15px;color:#fff; background:#627AAC;">
                                 <i class="fa-brands fa-facebook"></i>
@@ -72,7 +72,6 @@
                                     <input type="submit" class="btn btn-outline-primary" value="ENVIAR"/>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
                 </form>

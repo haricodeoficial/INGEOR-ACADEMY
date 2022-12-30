@@ -61,6 +61,7 @@ $url = ruta::ctrRuta();
                   </div>
                     <p>Precio: <strong>'.$value2["precio"].'$</strong></p> 
                     <p>Fecha inicio: '.$value2["fecha-inicio"].'</p>
+                    ';echo '
                 <select class="star-rating">
                     <option value="">Select a rating</option>
                     <option value="5">Excellent</option>
@@ -69,22 +70,22 @@ $url = ruta::ctrRuta();
                     <option value="2">Poor</option>
                     <option value="1">Terrible</option>
                 </select>
-                <div class="cart-heart container">
-                  <div class="row">
-                    <div class="col-md-6">
-                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                     </div>
-                    <div class="col-md-6">
-                    <a href="#"><i class="fa-solid fa-heart"></i></a>
-
-                    </div>
-                  </div>
-                </div>
+              
               
 
                 </div>
             </div>
             </a>
+            <div class="cart-heart container">
+            <div class="row">
+              <div class="col-md-6">
+              <button type="button" class="btn btn-default btn-xs canasta" idProducto="'.$value2["id"].'" data-toggle="tooltip" title="Agregar a mi lista de deseos"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></button>
+               </div>
+              <div class="col-md-6">
+              <button type="button" class="btn btn-default btn-xs deseos" idProducto="'.$value2["id"].'" data-toggle="tooltip" title="Agregar a mi lista de deseos"><i class="fa-solid fa-heart" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
        

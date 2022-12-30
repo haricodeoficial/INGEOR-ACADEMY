@@ -181,4 +181,249 @@ $("#datosImagen").change(function(){
        });
 
     }
+});
+
+
+//Comentarios
+
+$(".calificarProducto").click(function(){
+    var idComentario = $(this).attr("idComentario");
+    $("#idComentario").val(idComentario);
+
+
+});
+
+
+$("input[name='puntaje']").change(function(){
+   
+    var puntaje = $(this).val();
+
+    switch(puntaje){
+        case "1":
+            $("#estrellas").html('<select id="glsr-custom-options" class="star-rating" data-options=\'{"clearable":false, "tooltip":false}\''+
+            '<option value="">Select a rating</option>'+
+            '<option value="5">Excellent</option>'+
+            '<option value="4">Very Good</option>'+
+            '<option value="3">Average</option>'+
+            '<option value="2">Poor</option>'+
+            '<option value="1" selected>Terrible</option></select>'+
+            '</select>');
+            var starRatingControl = new StarRating('.star-rating',{
+
+                maxStars: 5,
+                tooltip: 'Select a Rating',
+                classNames: {
+                  active: 'gl-active',
+                  base: 'gl-star-rating',
+                  selected: 'gl-selected',
+                }
+            
+            });
+            break; 
+        case "2":
+            $("#estrellas").html('<select id="glsr-custom-options" class="star-rating" data-options=\'{"clearable":false, "tooltip":false}\''+
+            '<option value="">Select a rating</option>'+
+            '<option value="5">Excellent</option>'+
+            '<option value="4">Very Good</option>'+
+            '<option value="3">Average</option>'+
+            '<option value="2" selected>Poor</option>'+
+            '<option value="1">Terrible</option></select>'+
+            '</select>');
+            var starRatingControl = new StarRating('.star-rating',{
+
+                maxStars: 5,
+                tooltip: 'Select a Rating',
+                classNames: {
+                  active: 'gl-active',
+                  base: 'gl-star-rating',
+                  selected: 'gl-selected',
+                }
+            
+            }); 
+        break; 
+        case "3":
+            $("#estrellas").html('<select id="glsr-custom-options" class="star-rating" data-options=\'{"clearable":false, "tooltip":false}\''+
+            '<option value="">Select a rating</option>'+
+            '<option value="5">Excellent</option>'+
+            '<option value="4">Very Good</option>'+
+            '<option value="3" selected>Average</option>'+
+            '<option value="2">Poor</option>'+
+            '<option value="1">Terrible</option></select>'+
+            '</select>');
+            var starRatingControl = new StarRating('.star-rating',{
+
+                maxStars: 5,
+                tooltip: 'Select a Rating',
+                classNames: {
+                  active: 'gl-active',
+                  base: 'gl-star-rating',
+                  selected: 'gl-selected',
+                }
+            
+            }); 
+        break; 
+        case "4":
+            $("#estrellas").html('<select id="glsr-custom-options" class="star-rating" data-options=\'{"clearable":false, "tooltip":false}\''+
+            '<option value="">Select a rating</option>'+
+            '<option value="5">Excellent</option>'+
+            '<option value="4" selected>Very Good</option>'+
+            '<option value="3">Average</option>'+
+            '<option value="2">Poor</option>'+
+            '<option value="1">Terrible</option></select>'+
+            '</select>');
+            var starRatingControl = new StarRating('.star-rating',{
+
+                maxStars: 5,
+                tooltip: 'Select a Rating',
+                classNames: {
+                  active: 'gl-active',
+                  base: 'gl-star-rating',
+                  selected: 'gl-selected',
+                }
+            
+            }); 
+        break; 
+        case "5":
+            $("#estrellas").html('<select id="glsr-custom-options" class="star-rating" data-options=\'{"clearable":false, "tooltip":false}\''+
+            '<option value="">Select a rating</option>'+
+            '<option value="5" selected>Excellent</option>'+
+            '<option value="4">Very Good</option>'+
+            '<option value="3">Average</option>'+
+            '<option value="2">Poor</option>'+
+            '<option value="1">Terrible</option></select>'+
+            '</select>');
+            var starRatingControl = new StarRating('.star-rating',{
+
+                maxStars: 5,
+                tooltip: 'Select a Rating',
+                classNames: {
+                  active: 'gl-active',
+                  base: 'gl-star-rating',
+                  selected: 'gl-selected',
+                }
+            
+            }); 
+        break; 
+    }
+});
+
+function validarComentario(){
+
+	var comentario = $("#comentario").val();
+
+	if(comentario != ""){
+
+		var expresion = /^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]*$/;
+
+		if(!expresion.test(comentario)){
+
+			$("#comentario").parent().before('<div class="alert alert-danger"><strong>ERROR:</strong> No se permiten caracteres especiales como por ejemplo !$%&/?¡¿[]*</div>');
+
+			return false;
+
+		}
+
+	}else{
+
+		$("#comentario").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> Campo obligatorio</div>');
+
+		return false;
+
+	}
+
+	return true;
+
+}
+
+
+var starRatingControl = new StarRating('.star-rating',{
+
+    maxStars: 5,
+	tooltip: 'Select a Rating',
+	classNames: {
+      active: 'gl-active',
+      base: 'gl-star-rating',
+      selected: 'gl-selected',
+    }
+
+});
+
+
+// Lista de deseos
+
+$(".deseos").click(function(){
+
+	var idProducto = $(this).attr("idProducto");
+	console.log("idProducto", idProducto);
+
+	var idUsuario = localStorage.getItem("usuario");
+	console.log("idUsuario", idUsuario);
+
+	if(idUsuario == null){
+
+		swal({
+		  title: "Debe ingresar al sistema",
+		  text: "¡Para agregar un producto a la 'lista de deseos' debe primero ingresar al sistema!",
+		  type: "warning",
+		  confirmButtonText: "¡Cerrar!",
+		  closeOnConfirm: false
+		},
+		function(isConfirm){
+				 if (isConfirm) {	   
+				    window.location = rutaOculta;
+				  } 
+		});
+
+	}else{
+
+        $(this).addClass("btn-danger");
+  
+		var datos = new FormData();
+		datos.append("idUsuario", idUsuario);
+		datos.append("idProducto", idProducto);
+        console.log(rutaOculta);
+		$.ajax({
+			url:rutaOculta+"ajax/usuarios.ajax.php",
+			method:"POST",
+			data: datos,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success:function(respuesta){
+				console.log(respuesta);
+							
+			}
+
+		})
+
+	}
+
+});
+
+
+//Borar producto de lista de deseos
+$(".quitarDeseo").click(function(){
+
+	var idDeseo = $(this).attr("idDeseo");
+
+	$(this).parent().parent().parent().remove();
+
+	var datos = new FormData();
+	datos.append("idDeseo", idDeseo);
+
+	$.ajax({
+			url:rutaOculta+"ajax/usuarios.ajax.php",
+			method:"POST",
+			data: datos,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success:function(respuesta){
+			console.log(respuesta + "FOPCJDIOPSFJ");
+			}
+
+		});
+
+
 })
+
