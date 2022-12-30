@@ -773,7 +773,6 @@ class ControladorUsuarios{
 	}
 	//Quitar producto de lista de deseos 
 	static public function ctrQuitarDeseo($datos){
-
 		$tabla = "deseos";
 
 		$respuesta = ModeloUsuarios::mdlQuitarDeseo($tabla, $datos);
@@ -781,6 +780,47 @@ class ControladorUsuarios{
 		return $respuesta;
 
 	}
+	//Eliminar usuario
+	public function ctrEliminarUsuario(){
+		if(isset($_GET["id"])){
+			$tabla1 = "usuarios";
+			$tabla2 = "comentarios";
+			$tabla3 = "compras";
+			$tabla4 = "deseos";
+			$id = $_GET["id"];
+			if($_GET["foto"] != ""){
+				unlink($_GET["foto"]);
+				rmdir('vistas/img/usuarios/'.$_GET["id"]);
+			}
+			$respuesta = ModeloUsuarios::mdlEliminarUsuario($tabla1,$id);
+			ModeloUsuarios::mdlEliminarComentarios($tabla2, $id);
+			ModeloUsuarios::mdlEliminarCompras($tabla3, $id);
+			ModeloUsuarios::mdlEliminarListaDeseos($tabla4, $id);
+			if($respuesta == "ok"){
+				$url = ruta::ctrRuta();
+				echo'<script>
+
+				swal({
+					  title: "¡SU CUENTA HA SIDO BORRADA!",
+					  text: "¡Debe registrarse nuevamente si desea ingresar!",
+					  type: "success",
+					  confirmButtonText: "Cerrar",
+					  closeOnConfirm: false
+				},
+
+				function(isConfirm){
+						 if (isConfirm) {	   
+						   window.location = "'.$url.'salir";
+						  } 
+				});
+
+			  </script>';
+
+			}
+
+		}
+	}
+	//
 
 }
 

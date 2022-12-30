@@ -88,10 +88,10 @@ exit();
                                 </a>
                                 <div class="row">
                                 <div class="col-md-6">
-                                <button type="button" class="btn btn-default btn-xs canasta" idProducto="'.$value2["id"].'" data-toggle="tooltip" title="Agregar a mi lista de deseos"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-default btn-xs canasta" idDeseo="'.$value["id"].'" data-toggle="tooltip" title="Agregar a mi lista de deseos"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></button>
                                  </div>
                                 <div class="col-md-6">
-                                <button type="button" class="btn btn-danger btn-xs quitarDeseo" idProducto="'.$value2["id"].'"data-toggle="tooltip" title="Quitar de mi lista de deseos"><i class="fa-solid fa-heart" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-danger btn-xs quitarDeseo" idDeseo="'.$value["id"].'"data-toggle="tooltip" title="Quitar de mi lista de deseos"><i class="fa-solid fa-heart" aria-hidden="true"></i></button>
                                 </div>
                               </div>
                                 </div>';
@@ -134,11 +134,7 @@ exit();
                     echo'
                     ';
                 ?>
-               <button type="submit" class="button-7 btnCambiar">Eliminar cuenta</button>
-                <?php
-                 //$borrarUsuario = new ControladorUsuarios();
-                 //$borrarUsuario->ctrEliminarUsuario();
-                    ?>
+               
                 
 
 
@@ -148,6 +144,7 @@ exit();
         </div>
         </figure>
         </form>
+       
         <h2>Mi aprendizaje</h2>
                 <hr>
                 <form method="post" onsubmit="return validarComentario()">
@@ -382,5 +379,15 @@ exit();
                     ?>
                 </section>
                 </form>
+                <div class="row">
+            <div class="col-md-12">
+            <button class="button-7 btnCambiar" id="eliminarUsuario">Eliminar cuenta</button>
+
+            </div>
+        </div>
+                <?php
+                 $borrarUsuario = new ControladorUsuarios();
+                 $borrarUsuario->ctrEliminarUsuario();
+                    ?>
       </div>
   </section>

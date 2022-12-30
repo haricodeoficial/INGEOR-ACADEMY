@@ -60,7 +60,6 @@ public $foto;
 }
 
 
-
 //Validar email existente
 
 if(isset($_POST["validarEmail"])){
@@ -92,7 +91,7 @@ if(isset($_POST["idUsuario"])){
 //Quitar producto de lista de deseo
 
 
-if(isset($_POST["idUsuario"])){
+if(isset($_POST["idDeseo"])){
 
 	$quitarDeseo = new AjaxUsuarios();
 	$quitarDeseo -> idDeseo = $_POST["idDeseo"];

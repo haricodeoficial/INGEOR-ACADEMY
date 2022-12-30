@@ -45,10 +45,10 @@ if(isset($_SESSION["validarSesion"])){
                      if($_SESSION["validarSesion"] == "ok"){
                          if($_SESSION["modo"] == "directo"){ 
                            echo' <li class="nav-item cart">
-                           <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                           <a href="carrito-de-compras"><i class="fa-solid fa-cart-shopping"></i></a>
                            </li>
                            <li class="nav-item favorite">
-                           <a href="#"><i class="fa-solid fa-heart"></i></a>
+                           <a href="perfil"><i class="fa-solid fa-heart"></i></a>
                            </li>';
                            if($_SESSION["foto"] != ""){
                               echo'<li class="nav-item">

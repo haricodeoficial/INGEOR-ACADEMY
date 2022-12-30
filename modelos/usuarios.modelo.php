@@ -190,9 +190,7 @@ class ModeloUsuarios{
         }
         //Quitar producto de lista de deseos
         static public function mdlQuitarDeseo($tabla, $datos){
-
             $stmt = conexionBaseDeDatos::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
-    
             $stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
     
             if($stmt -> execute()){
@@ -210,6 +208,94 @@ class ModeloUsuarios{
             $stmt = null;
     
         }
+        //Eliminar usuario
+        static public function mdlEliminarUsuario($tabla, $id){
+            $stmt = conexionBaseDeDatos::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+            $stmt -> bindParam(":id", $id, PDO::PARAM_INT);
+    
+            if($stmt -> execute()){
+    
+                return "ok";
+    
+            }else{
+    
+                return "error";
+    
+            }
+    
+            $stmt-> close();
+    
+            $stmt = null;
+
+
+        }
+        //Eliminar comentarios de usuario
+        static public function mdlEliminarComentarios($tabla, $id){
+            $stmt = conexionBaseDeDatos::conectar()->prepare("DELETE FROM $tabla WHERE id_usuario = :id_usuario");
+            $stmt -> bindParam(":id_usuario", $id, PDO::PARAM_INT);
+    
+            if($stmt -> execute()){
+    
+                return "ok";
+    
+            }else{
+    
+                return "error";
+    
+            }
+    
+            $stmt-> close();
+    
+            $stmt = null;
+
+
+        }
+        //Eliminar compras de usuario
+
+        static public function mdlEliminarCompras($tabla, $id){
+            $stmt = conexionBaseDeDatos::conectar()->prepare("DELETE FROM $tabla WHERE id_usuario = :id_usuario");
+            $stmt -> bindParam(":id_usuario", $id, PDO::PARAM_INT);
+    
+            if($stmt -> execute()){
+    
+                return "ok";
+    
+            }else{
+    
+                return "error";
+    
+            }
+    
+            $stmt-> close();
+    
+            $stmt = null;
+
+
+        }
+
+        //Eliminar lista de deseos usuario
+
+        static public function mdlEliminarListaDeseos($tabla, $id){
+            $stmt = conexionBaseDeDatos::conectar()->prepare("DELETE FROM $tabla WHERE id_usuario = :id_usuario");
+            $stmt -> bindParam(":id_usuario", $id, PDO::PARAM_INT);
+    
+            if($stmt -> execute()){
+    
+                return "ok";
+    
+            }else{
+    
+                return "error";
+    
+            }
+    
+            $stmt-> close();
+    
+            $stmt = null;
+
+
+        }
+
 
 }
 
