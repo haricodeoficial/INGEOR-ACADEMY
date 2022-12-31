@@ -763,6 +763,7 @@ class ControladorUsuarios{
 		return $respuesta;
 
 	}
+
 	//Mostrar lista de deseos
 	static public function ctrMostrarDeseos($item){
 		$tabla = "deseos";

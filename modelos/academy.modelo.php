@@ -17,6 +17,7 @@ $stmt -> close();
 $stmt = null;
 
 	}
+	
 	static public function mdlListarCursos($tabla, $ordenar, $item, $valor){
 
 		if($item != null){
@@ -59,6 +60,14 @@ $stmt = null;
 		$stmt -> close();
 		$stmt = null;
 
+	}
+	static public function mdlmostrarSeccionesPagina($tabla, $id){
+		$stmt = conexionBaseDeDatos::conectar()->prepare("SELECT *FROM $tabla WHERE id_seccion = :id");
+		$stmt->bindParam(":id", $id, PDO::PARAM_INT);	
+		$stmt -> execute();
+		return $stmt ->fetchAll();
+		$stmt -> close();
+		$stmt = null;
 	}
 	
 }

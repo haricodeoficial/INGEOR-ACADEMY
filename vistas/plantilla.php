@@ -350,7 +350,7 @@ if(isset($_GET["ruta"])){
 <script src="<?php echo $url;?>vistas/js/buscador.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/main.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/usuarios.js" type="text/javascript"></script>
-
+<script src="<?php echo $url;?>vistas/js/carrito-de-compras.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/registroFacebook.js" type="text/javascript"></script>
 
 <script>

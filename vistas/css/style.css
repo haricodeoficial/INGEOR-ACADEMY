@@ -34,6 +34,7 @@ body {
 	 .navbar-expand-lg .input-group-search {
 		width: 80% !important; 
 	 }
+  
 	 /*body {
 		padding-top: 110px;
 	 }*/
@@ -58,12 +59,13 @@ body {
 .button-5 {
   align-items: center;
   background-color: var(--azul);
+  display: inline-flex;
+
   border: 1px solid transparent;
   border-radius: .25rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
   color: #fff;
-  display: inline-flex;
   font-size: 16px;
   font-weight: 600;
   justify-content: center;
@@ -359,6 +361,24 @@ footer .social-icons li a {
         padding-left: 0px;
         padding-top: 10px;
     } 
+    .producto-img-carrito{
+      width: 35%!important;
+  
+    }
+}
+@media (max-width:400px) {
+  .producto-img-carrito{
+    width: 60%!important;
+  }
+  .button-eliminar-en-canasta{
+    height: 50%;
+    margin-top: 20px;
+  }
+}
+@media(max-width:380px){
+  .button-eliminar-en-canasta{
+width: 10%;
+  }
 }
 footer #social-icons li {
     font-size: 20px;
@@ -410,8 +430,6 @@ color: #fff;
   }
   
 .overlay h1{
-    position: relative;
-    top: 35%;
     font-weight: 700;
     font-size: 100px;
     
@@ -599,6 +617,9 @@ label {
 .logo-principal{
   width: 50%;
 }
+.titulo-principal{
+  font-size: 70px!important;
+}
 @media(max-width:768px){
   .button-6{
     margin: 0px;
@@ -620,8 +641,17 @@ label {
     .nav-responsive{
       padding-top: 30px;
     }
-
+    .inicio-padding{
+      padding-top:200px!important;
+      padding-left: 35px!important;
+      padding-right: 50px!important;
+    }
+    .descripcion-768{
+      display: none;
+    }
+   
 }
+
 .swiper-principal{
   padding: 0px!important;
 }
@@ -652,6 +682,7 @@ footer{
   width: 100%;
   height: 50vh;
 }
+.carrito
 .content{
 padding-top: 100px;
 }
@@ -729,4 +760,34 @@ width: 50%;
 }
 .modal{
   z-index: 2;
+}
+
+#carrito-de-compras{
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../img/carrito.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 100%;
+  height: 50vh;
+}
+.inicio-padding{
+  padding-top:350px;
+}
+.producto-img-carrito{
+  width: 50%;
+}
+.button-eliminar-en-canasta{
+  height: 50%;
+  margin-top: 20px;
+}
+.table-wrap{
+  overflow-x: scroll;
+}
+.pup{
+  position: absolute;
+  top: 11px;
+  width: 20px;
+  height: 20px;
+  background: var(--red);
+  border-radius: 20px;
 }

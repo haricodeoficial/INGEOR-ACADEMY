@@ -148,11 +148,12 @@ class ModeloUsuarios{
 		$stmt = null;
 
 	}
-
+    //Verificar deseo repetido
+ 
     //Agregar a lista de deseos
     static public function mdlAgregarDeseo($tabla, $datos){
 
-		$stmt = conexionBaseDeDatos::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto) VALUES (:id_usuario, :id_producto)");
+		$stmt = conexionBaseDeDatos::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto) SELECT :id_usuario, :id_producto WHERE NOT EXISTS(SELECT * FROM $tabla WHERE id_usuario=:id_usuario AND id_producto=:id_producto)");
 
 		$stmt->bindParam(":id_usuario", $datos["idUsuario"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_producto", $datos["idProducto"], PDO::PARAM_INT);	

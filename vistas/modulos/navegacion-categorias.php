@@ -1,7 +1,5 @@
 <?php
-    $item = null;
-    $valor = null; 
-    $categorias= controladorAcademy::mostrarSecciones($item,$valor);
+
     foreach($categorias as $key=>$value){
       echo '
  

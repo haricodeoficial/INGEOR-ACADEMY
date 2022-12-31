@@ -13,6 +13,12 @@ class controladorAcademy{
         $respuesta = modeloAcademy::modeloDatos($tabla,$item,$valor);
         return $respuesta;
     }
+    static public function ctrmostrarSeccionesPagina($id){
+        $tabla = "cursos";
+        $respuesta = modeloAcademy::mdlmostrarSeccionesPagina($tabla, $id);
+        return $respuesta;
+
+    }
     static public function mostrarCategorias($item,$valor){
         $tabla ="categorias";
         $respuesta = modeloAcademy::modeloDatos($tabla,$item,$valor);

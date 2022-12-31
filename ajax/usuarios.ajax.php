@@ -33,13 +33,14 @@ public $foto;
 	public $idUsuario;
 	public $idProducto;
 
+   
 	public function ajaxAgregarDeseo(){
 
 		$datos = array("idUsuario"=>$this->idUsuario,
 					   "idProducto"=>$this->idProducto);
 
 		$respuesta = ControladorUsuarios::ctrAgregarDeseo($datos);
-       ;
+       
         echo $respuesta;
 
 	}

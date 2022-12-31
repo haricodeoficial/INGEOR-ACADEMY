@@ -6,10 +6,33 @@ $url = ruta::ctrRuta();
         <?php
         $item = null; 
         $valor = null; 
+        $i = 0;
         $slides = controladorAcademy::mostrarSlider($item,$valor);
+        $categorias= controladorAcademy::mostrarSecciones($item,$valor);
         foreach($slides as $key=>$value){
-          echo'
-          <div class="swiper-slide slide1"><img class="overlay-img" style="position:relative;" src="'.$url.''.$value["img"].'" alt="'.$value["titulo"].'" ><div class="overlay"><h1 class="titulo-principal">'.$value["titulo"].'</h1></div></div>'; 
+          if($categorias[$i]["id"] == $value["titulo"]){
+            echo'
+            <div class="swiper-slide slide1">
+            <img class="overlay-img" style="position:relative;" src="'.$url.''.$value["img"].'" alt="'.$value["titulo"].'" >
+            <div class="overlay">
+            <center>
+            <div class="container inicio-padding">
+              <div class="row">
+                <div class="col-md-6">
+                  <h1 class="titulo-principal">'.$categorias[$i]["seccion"].'</h1>
+                  <a href="'.$categorias[$i]["ruta"].'" style="width:50%;" class="button-5">Ver más</a>
+  
+                </div>
+                <div style="padding-left:50px;" class="col-md-6">
+                <p class="descripcion-768">'.$value["descripcion"].'</p>
+                </div>
+              </div>
+            </div>
+            </center>
+            </div>
+            </div>'; 
+          }
+          $i++;
         }
 
         ?>
@@ -62,24 +85,13 @@ $url = ruta::ctrRuta();
                     <p>Precio: <strong>'.$value2["precio"].'$</strong></p> 
                     <p>Fecha inicio: '.$value2["fecha-inicio"].'</p>
                     ';echo '
-                <select class="star-rating">
-                    <option value="">Select a rating</option>
-                    <option value="5">Excellent</option>
-                    <option value="4">Very Good</option>
-                    <option value="3">Average</option>
-                    <option value="2">Poor</option>
-                    <option value="1">Terrible</option>
-                </select>
-              
-              
-
                 </div>
             </div>
             </a>
             <div class="cart-heart container">
             <div class="row">
               <div class="col-md-6">
-              <button type="button" class="btn btn-default btn-xs canasta" idProducto="'.$value2["id"].'" data-toggle="tooltip" title="Agregar a mi lista de deseos"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></button>
+              <button type="button" class="btn btn-default btn-xs agregarCarrito" idProducto="'.$value2["id"].'" imagen="'.$value2["imagen"].'" titulo="'.$value2["nombre"].'" precio="'.$value2["precio"].'" data-toggle="tooltip" title="Agregar a mi lista de deseos"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></button>
                </div>
               <div class="col-md-6">
               <button type="button" class="btn btn-default btn-xs deseos" idProducto="'.$value2["id"].'" data-toggle="tooltip" title="Agregar a mi lista de deseos"><i class="fa-solid fa-heart" aria-hidden="true"></i></button>

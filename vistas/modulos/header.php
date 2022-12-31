@@ -45,6 +45,7 @@ if(isset($_SESSION["validarSesion"])){
                      if($_SESSION["validarSesion"] == "ok"){
                          if($_SESSION["modo"] == "directo"){ 
                            echo' <li class="nav-item cart">
+                           <div class="pup"><p class="cantidadCesta" style="font-size:15px; font-weight:700; padding-left:5px;"></p></div>
                            <a href="carrito-de-compras"><i class="fa-solid fa-cart-shopping"></i></a>
                            </li>
                            <li class="nav-item favorite">
