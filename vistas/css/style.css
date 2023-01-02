@@ -791,3 +791,12 @@ width: 50%;
   background: var(--red);
   border-radius: 20px;
 }
+#checkout{
+  padding-top: 40px;
+}
+#paypalIcon{
+  font-size: 50px;
+}
+#cardIcon{
+  font-size: 50px;
+}

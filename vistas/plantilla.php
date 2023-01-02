@@ -102,7 +102,7 @@ $url = ruta::ctrRuta();
           include "modulos/iniciar-sesion.php";
         }else if($valor =="recuperar"){
           include "modulos/recuperar.php";
-        }else if($valor == "buscador" || $valor == "verificar" ||$valor == "salir" || $valor == "perfil" || $valor == "carrito-de-compras"){
+        }else if($valor == "buscador" || $valor == "verificar" ||$valor == "salir" || $valor == "perfil" || $valor == "carrito-de-compras" || $valor =="checkout"){
           include "modulos/".$rutas[0].".php";
         }
         else{

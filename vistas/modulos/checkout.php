@@ -1,17 +1,33 @@
-<section id="carrito-de-compras">
-    <div class="carrito">
-        <div class="content center-div justify-content-center">
-        <h1 style="color:white;">Carrito de compras</h1>
+<section id="checkout">
+<div class="check-banner">
+    <center>
+    <h1>Realizar pago</h1>
+
+    </center>
+</div>
+<div class="contenido-pago">
+    <div class="buttons-check">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <center>
+                    <i id="paypalIcon"class="fa-brands fa-cc-paypal"></i>
+                    <input id="checkPaypal" type="radio" name="pago" value="paypal" checked>
+                    
+                    </center>
+                </div>
+                <div class="col-md-6">
+                    <center>
+                    <i id="cardIcon" class="fa-solid fa-credit-card"></i>
+                    <input id="ebyGo" type="radio" name="pago" value="paypal" checked>
+                    </center>
+                </div>
+            </div>
         </div>
     </div>
-</section>
-<section class="ftco-section">
+    <section class="ftco-section">
 		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Mis productos</h2>
-				</div>
-			</div>
+			
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-wrap">
@@ -36,16 +52,7 @@
                           </th>
                           <td style="background:#eee; border-radius:10px;" class="border-bottom-0">
 						  <div class="sumaSubTotal"></div>
-						<?php
-						if(isset($_SESSION["validarSesion"])){
-							if($_SESSION["validarSesion"] == "ok"){
-								echo'<a href="checkout"><button class="btn btn-primary">REALIZAR PAGO</button></a>';
-							}
-
-						}else{
-							echo'<a href="ingreso"><button class="btn btn-primary">REALIZAR PAGO</button></a>';
-						}
-						?>
+						
 
                         </td>
 
@@ -58,3 +65,6 @@
 			</div>
 		</div>
 	</section>
+
+</div>
+</section>
