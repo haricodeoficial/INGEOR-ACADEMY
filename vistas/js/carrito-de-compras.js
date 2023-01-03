@@ -33,6 +33,18 @@ listaCarrito.forEach(funcionForEach);
         '<td class="border-bottom-0 precioCarritoCompra subtotales" precio-articulo="'+item.precio+'">USD$<span>'+item.precio+'</span></td>'+
         '</tr>'
         );
+        $(".cuerpoProductosCheck").append('<tr>'+
+        '<th style="display:flex;" scope="row" class="scope border-bottom-0">'+
+        '<div class="row">'+'<div class="col-md-3">'+
+        '<img style="padding-left:15px;" class="producto-img-carrito" src="'+item.imagen+'" alt="producto">'+
+        '</div>'+ 
+        '<div class="col-md-9">'+
+        '<p class="tituloCarritoCompra" style="margin-top:20px;" titulo-articulo="'+item.titulo+'"><span>'+item.titulo+'</span></p>'+
+        '</div>'+
+        '</div>'+
+        '</th>'+
+        '<td class="border-bottom-0 precioCarritoCompra subtotales" precio-articulo="'+item.precio+'">USD$<span>'+item.precio+'</span></td>'+
+        '</tr>')
     }
 
 }else{
@@ -177,6 +189,85 @@ $(document).on("click",".quitarItemCarrito",function(){
     sumaSubtotales();
 
 })
+/*==================================================
+====================================================
+====================================================
+====================================================
+MÉTODO DE PAGO PARA CAMBIO DE DIVISA
+====================================================*/
+
+var metodoPago = "paypal";
+divisas(metodoPago);
+$("input[name='pago']").change(function(){
+    var metodoPago = $(this).val();
+    divisas(metodoPago);
+    if(metodoPago == "payu"){
+
+		$(".btnPagar").hide();
+		//$(".formPayu").show();
+
+		//pagarConPayu();
+
+	}else{
+
+		$(".btnPagar").show();
+		//$(".formPayu").hide();
+
+	}
+})
+
+
+/*==================================================
+====================================================
+====================================================
+====================================================
+FUNCIÓN PARA EL CAMBIO DE DIVISA
+====================================================*/
+function divisas(metodoPago){
+if(metodoPago == "paypal"){
+    $("#cambiarDivisa").append('<option value="USD">USD</option>'+
+    '<option value="EUR">EUR</option>'+
+    '<option value="GBP">GBP</option>'+
+    '<option value="MXN">MXN</option>'+
+    '<option value="JPY">JPY</option>'+
+    '<option value="CAD">CAD</option>'+
+    '<option value="BRL">BRL</option>');
+}else{
+    $("#cambiarDivisa").append('<option value="USD">USD</option>'+
+    '<option value="EUR">EUR</option>'+
+    '<option value="GBP">GBP</option>'+
+    '<option value="MXN">MXN</option>'+
+    '<option value="JPY">JPY</option>'+
+    '<option value="CAD">CAD</option>'+
+    '<option value="BRL">BRL</option>');
+}
+}
+/*==================================================
+====================================================
+====================================================
+====================================================
+CAMBIO DE DIVISA  ---- API PENDIENTE
+====================================================*/
+var divisaBase = "USD";
+
+$("#cambiarDivisa").change(function(){
+    var divisa = $(this).val();
+    $.ajax({
+		url: "http://free.currencyconverterapi.com/api/v3/convert?q="+divisaBase+"_"+divisa+"&compact=y",
+        type:"GET",
+		cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType:"jsonp",
+        success:function(respuesta){
+            var divisaString = JSON.stringify(respuesta);
+            var conversion = divisaString.substr(18,4);
+            console.log("conversion",conversion);
+        }
+    })
+})
+
+
 
 /*==================================================
 ====================================================
@@ -198,4 +289,12 @@ function sumaSubtotales(){
     var sumaTotal = arraySumaSubtotales.reduce(sumaArraySubtotales);
     $(".sumaSubTotal").html('<h2>Total: USD$<span>'+sumaTotal+'</span></h2>'+
     '');   
+    $(".valorTotalCompra").html(''+sumaTotal+'');
 }
+
+/*==================================================
+====================================================
+====================================================
+====================================================
+CHECKOUT
+====================================================*/
