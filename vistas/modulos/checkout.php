@@ -1,7 +1,7 @@
 <section id="checkout">
 <div class="check-banner">
     <center>
-    <h1>Realizar pago</h1>
+    <h1 style="color:#fff;">Realizar pago</h1>
 
     </center>
 </div>
@@ -25,13 +25,22 @@
             </div>
         </div>
     </div>
-    <section class="ftco-section">
+
+</div>
+</section>
+
+
+
+
+<section class="ftco-section listaProductos">
+<h4 class="text-center well text-muted text-uppercase">Productos a comprar</h4>
+
 		<div class="container">
 			
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-wrap">
-						<table class="table">
+					<table class="table tablaProductos">
 					    <thead class="thead-primary">
 					      <tr>
 					        <th>Producto</th>
@@ -39,32 +48,48 @@
 					       
 					      </tr>
 					    </thead>
-					    <tbody class="cuerpoCarrito">
-					      
+                        <tbody class="cuerpoProductosCheck">
+
+
+                        
+                        </tbody>
+					    <tbody class="cuerpoCheckout">
+                     
+								<tr>
+									<td><strong>Total</strong></td>	
+									<td><strong><span class="cambioDivisa">USD</span> $<span class="valorTotalCompra" valor="0">0</span></strong></td>	
+								</tr>
+                                <tr>
+                                    <td>Divisa</td>
+                                    <td>
+                                    <div class="divisa">
+
+                                        <select class="form-control" id="cambiarDivisa" name="divisa">
+                                            
+
+
+                                        </select>	
+
+                                        <br>
+
+                                    </div>
+
+                                    </td>
+                                   
+                                </tr>
 					     
                           
 					    </tbody>
-					<tbody>
-						<tr class="sumaCarrito">
-                          <th style="display:flex;" scope="row" class="scope border-bottom-0">
-                          
-                          
-                          </th>
-                          <td style="background:#eee; border-radius:10px;" class="border-bottom-0">
-						  <div class="sumaSubTotal"></div>
-						
-
-                        </td>
-
-					        
-					      </tr>
-					</tbody>
+					
 					  </table>
+                   
 					</div>
 				</div>
 			</div>
+            <center>
+            <button style="margin-top:20px; width:80%;"class="btn btn-primary btnPagar">REALIZAR PAGO</button>
+
+            </center>
+
 		</div>
 	</section>
-
-</div>
-</section>
