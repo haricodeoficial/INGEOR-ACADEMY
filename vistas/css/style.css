@@ -795,8 +795,25 @@ width: 50%;
   padding-top: 40px;
 }
 #paypalIcon{
-  font-size: 50px;
+  font-size: 80px;
+  color: #fff;
 }
 #cardIcon{
-  font-size: 50px;
+  font-size: 80px;
+  color: #fff;
+}
+#checkout{
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../img/pago.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding-bottom: 50px;
+}
+#checkPaypal{
+  width: 20px;
+height: 20px;
+}
+#ebyGo{
+  width: 20px;
+height: 20px;
 }
