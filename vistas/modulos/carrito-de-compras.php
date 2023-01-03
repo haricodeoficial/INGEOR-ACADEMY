@@ -39,11 +39,11 @@
 						<?php
 						if(isset($_SESSION["validarSesion"])){
 							if($_SESSION["validarSesion"] == "ok"){
-								echo'<a href="checkout"><button class="btn btn-primary">REALIZAR PAGO</button></a>';
+								echo'<a id="btnCheckout" href="checkout"><button class="btn btn-primary">REALIZAR PAGO</button></a>';
 							}
 
 						}else{
-							echo'<a href="ingreso"><button class="btn btn-primary">REALIZAR PAGO</button></a>';
+							echo'<a id="btnCheckout" href="ingreso"><button class="btn btn-primary">REALIZAR PAGO</button></a>';
 						}
 						?>
 
