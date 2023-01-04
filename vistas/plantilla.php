@@ -35,7 +35,6 @@ $url = ruta::ctrRuta();
 <!--GOOGLE FONTS-->
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
 <link rel="stylesheet" type="text/css" href="<?php echo $url;?>vistas/css/jBox.all.css">
@@ -64,6 +63,9 @@ $url = ruta::ctrRuta();
 }
 </style>
 <body>
+<a href="https://api.whatsapp.com/send?phone=+50238663959&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20cursos%20impartidos." class="float" target="_blank">
+<i class="fa-brands fa-whatsapp"></i></a>
+  <div class="nav-responsive">
 	<?php
 	include "modulos/header.php";
 	$rutas = array();
@@ -100,7 +102,7 @@ $url = ruta::ctrRuta();
           include "modulos/iniciar-sesion.php";
         }else if($valor =="recuperar"){
           include "modulos/recuperar.php";
-        }else if($valor == "buscador" || $valor == "verificar" ||$valor == "salir" || $valor == "perfil"){
+        }else if($valor == "buscador" || $valor == "verificar" ||$valor == "salir" || $valor == "perfil" || $valor == "carrito-de-compras" || $valor =="checkout"){
           include "modulos/".$rutas[0].".php";
         }
         else{
@@ -115,18 +117,69 @@ $url = ruta::ctrRuta();
 	}
 	include "modulos/footer.php";
 	?>
+
+
+  </div>
   <input type="hidden" value="<?php echo $url; ?>" id="rutaOculta">
 
-</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+<?php
+$rutas = array();
+$ruta = null; 
+$rutaCategorias = null;
 
-<script type="text/javascript">
+
+if(isset($_GET["ruta"])){
+  $rutas = explode("/",$_GET["ruta"]);
+		$valor =$rutas[0];
+    if($valor != "perfil"){
+      echo'
+      <script type="text/javascript">
+      window.onload = function(){
+       var swiper = new Swiper(".mySwiper23", {
+           slidesPerView: 1,
+           spaceBetween: 20,
+           slidesPerGroup: 1,
+           loop: true,
+           loopFillGroupWithBlank: true,
+           
+           pagination: {
+             el: ".swiper-pagination",
+             clickable: true,
+           },
+           navigation: {
+             nextEl: ".swiper-button-next",
+             prevEl: ".swiper-button-prev",
+           },breakpoints:{
+             768:{
+               slidesPerView: 1,
+               spaceBetween: 20,
+               slidesPerGroup:1,
+             },
+             992:
+             {
+               slidesPerView: 2,
+               spaceBetween: 20,
+               slidesPerGroup:2,
+             }
+   
+           },
+         });
+      };
+   
+</script>
+      
+      <script type="text/javascript">
       var swiper = new Swiper(".mySwiper", {
         slidesPerView: 1,
         slidesPerGroup: 1,
+        loop: true,
+        loopFillGroupWithBlank: true,
         pagination: {
           el: ".swiper-pagination",
           type: "progressbar",
@@ -134,9 +187,14 @@ $url = ruta::ctrRuta();
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
+        },autoplay:{
+          delay:5000,
+          pauseOnMouseEnter:true,
+
         },
       });
 </script> 
+
 <script type="text/javascript">
       var swiper = new Swiper(".mySwiper2", {
         slidesPerView: 1,
@@ -167,22 +225,100 @@ $url = ruta::ctrRuta();
 
         },
       });
-</script>
+</script>';
+    }else{
+      echo'<script type="text/javascript">
+      window.onload = function(){
+       var swiper = new Swiper(".mySwiper2", {
+           slidesPerView: 1,
+           spaceBetween: 20,
+           slidesPerGroup: 1,
+           loop: true,
+           loopFillGroupWithBlank: true,
+           
+           pagination: {
+             el: ".swiper-pagination",
+             clickable: true,
+           },
+           navigation: {
+             nextEl: ".swiper-button-next",
+             prevEl: ".swiper-button-prev",
+           },breakpoints:{
+             768:{
+               slidesPerView: 1,
+               spaceBetween: 20,
+               slidesPerGroup:1,
+             },
+             992:
+             {
+               slidesPerView: 2,
+               spaceBetween: 20,
+               slidesPerGroup:2,
+             }
+   
+           },
+         });
+      };
+   
+</script>';
+    }
+}else{
+  echo'<script type="text/javascript">
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    slidesPerGroup: 1,
+    loop: true,
+    loopFillGroupWithBlank: true,
+    pagination: {
+      el: ".swiper-pagination",
+      type: "progressbar",
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },autoplay:{
+      delay:5000,
+      pauseOnMouseEnter:true,
+    },
+  });
+</script> 
+<script type="text/javascript">
+  var swiper = new Swiper(".mySwiper2", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    slidesPerGroup: 1,
+    loop: true,
+    loopFillGroupWithBlank: true,
+    
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },breakpoints:{
+      768:{
+        slidesPerView: 3,
+        spaceBetween: 20,
+        slidesPerGroup:3,
+      },
+      992:
+      {
+        slidesPerView: 4,
+        spaceBetween: 20,
+        slidesPerGroup:4,
+      }
+
+    },
+  });
+</script>';
+}
+?>
+
 
 <script src="<?php echo $url;?>vistas/js/star-rating.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-var starRatingControl = new StarRating('.star-rating',{
 
-    maxStars: 5,
-	tooltip: 'Select a Rating',
-	classNames: {
-      active: 'gl-active',
-      base: 'gl-star-rating',
-      selected: 'gl-selected',
-    }
-
-});
-</script>
 <script>
   let sidebar = document.querySelector(".sidebar");
   let closeBtn = document.querySelector("#btn");
@@ -211,9 +347,10 @@ var starRatingControl = new StarRating('.star-rating',{
 <script src="<?php echo $url;?>vistas/js/jBox.all.min.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/demo.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/check.js" type="text/javascript"></script>
-<script src="<?php echo $url;?>vistas/js/usuarios.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/buscador.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/main.js" type="text/javascript"></script>
+<script src="<?php echo $url;?>vistas/js/usuarios.js" type="text/javascript"></script>
+<script src="<?php echo $url;?>vistas/js/carrito-de-compras.js" type="text/javascript"></script>
 <script src="<?php echo $url;?>vistas/js/registroFacebook.js" type="text/javascript"></script>
 
 <script>
@@ -238,7 +375,16 @@ var starRatingControl = new StarRating('.star-rating',{
    }(document, 'script', 'facebook-jssdk'));
 </script>
 <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
-<script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})
+</script>
+<script type="text/javascript">
 jQuery(document).ready(function($) {
 	$('#search-dropdown a').click(function(){
 		$('#search-btn').html($(this).text()).val($(this).text());
@@ -246,6 +392,9 @@ jQuery(document).ready(function($) {
 	});
 });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <!--FIN - ETIQUETAS JS-->
+</body>
 
 </html>

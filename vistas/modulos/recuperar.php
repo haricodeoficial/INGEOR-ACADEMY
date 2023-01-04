@@ -44,7 +44,6 @@ if(isset($_SESSION["validarSesion"])){
                                         $password = new ControladorUsuarios();
                                         $password ->ctrOlvidoPassword();
                                     ?>
-                                    <div class="g-recaptcha" data-sitekey="6Lf3FKwjAAAAACI_BAt8OVuU-msFyZ3SntqS0FCE"></div>
 
                                     <input type="submit" class="btn btn-outline-primary btnIngreso" value="ENVIAR">
                                     <center>

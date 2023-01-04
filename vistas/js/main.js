@@ -1,0 +1,1 @@
+$(".comentarios").css({"height":$(".comentarios .alturaComentarios").height()+"px","overflow":"hidden","margin-bottom":"20px"})

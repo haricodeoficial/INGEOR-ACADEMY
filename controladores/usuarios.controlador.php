@@ -51,7 +51,7 @@ class ControladorUsuarios{
                             </a>
                         <br>
                         <hr style="border: 1px solid #ccc; width: 80%;">
-                <h5>Si no se inscribiío en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
+                <h5>Si no se inscribío en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
                         </center>
                 
                     </div>
@@ -650,6 +650,178 @@ class ControladorUsuarios{
 		}
 
 	}
+	static public function ctrBuscarUsuario($valor){
+		$tabla = "usuarios";
+		$respuesta = ModeloUsuarios::mdlBuscarUsuario($tabla, $valor);
+		return $respuesta;
+	}
+    //Mostrar Compras
+    static public function ctrMostrarCompras($item, $valor){
+        $tabla = "compras";
+        $respuesta = ModeloUsuarios::mdlMostrarCompras($tabla,$item,$valor);
+        return $respuesta;
+    }
+    //Mostrar Usuario en el perfil
+    static public function ctrMostrarComentariosPerfil($datos){
+        $tabla = "comentarios";
+        $respuesta = ModeloUsuarios::mdlMostrarComentariosPerfil($tabla, $datos);
+        return $respuesta; 
+    }
+
+    //Actualizar comentario
+    public function ctrActualizarComentario(){
+
+		if(isset($_POST["idComentario"])){
+
+			if(preg_match('/^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["comentario"])){
+
+				if($_POST["comentario"] != ""){
+
+					$tabla = "comentarios";
+
+					$datos = array("id"=>$_POST["idComentario"],
+								   "rating"=>$_POST["puntaje"],
+								   "comentario"=>$_POST["comentario"]);
+                        var_dump($datos);
+					$respuesta = ModeloUsuarios::mdlActualizarComentario($tabla, $datos);
+					if($respuesta == "ok"){
+
+						echo'<script>
+
+								swal({
+									  title: "¡GRACIAS POR COMPARTIR SU OPINIÓN!",
+									  text: "¡Su calificación y comentario ha sido guardado!",
+									  type: "success",
+									  confirmButtonText: "Cerrar",
+									  closeOnConfirm: false
+								},
+
+								function(isConfirm){
+										 if (isConfirm) {	   
+										   history.back();
+										  } 
+								});
+
+							  </script>';
+
+					}
+
+				}else{
+
+					echo'<script>
+
+						swal({
+							  title: "¡ERROR AL ENVIAR SU CALIFICACIÓN!",
+							  text: "¡El comentario no puede estar vacío!",
+							  type: "error",
+							  confirmButtonText: "Cerrar",
+							  closeOnConfirm: false
+						},
+
+						function(isConfirm){
+								 if (isConfirm) {	   
+								   history.back();
+								  } 
+						});
+
+					  </script>';
+
+				}	
+
+			}else{
+
+				echo'<script>
+
+					swal({
+						  title: "¡ERROR AL ENVIAR SU CALIFICACIÓN!",
+						  text: "¡El comentario no puede llevar caracteres especiales!",
+						  type: "error",
+						  confirmButtonText: "Cerrar",
+						  closeOnConfirm: false
+					},
+
+					function(isConfirm){
+							 if (isConfirm) {	   
+							   history.back();
+							  } 
+					});
+
+				  </script>';
+
+			}
+
+		}
+
+	}
+
+	//Agregar a lista de deseos
+	static public function ctrAgregarDeseo($datos){
+
+		$tabla = "deseos";
+
+		$respuesta = ModeloUsuarios::mdlAgregarDeseo($tabla, $datos);
+		return $respuesta;
+
+	}
+
+	//Mostrar lista de deseos
+	static public function ctrMostrarDeseos($item){
+		$tabla = "deseos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarDeseos($tabla, $item);
+		return $respuesta;
+
+	}
+	//Quitar producto de lista de deseos 
+	static public function ctrQuitarDeseo($datos){
+		$tabla = "deseos";
+
+		$respuesta = ModeloUsuarios::mdlQuitarDeseo($tabla, $datos);
+
+		return $respuesta;
+
+	}
+	//Eliminar usuario
+	public function ctrEliminarUsuario(){
+		if(isset($_GET["id"])){
+			$tabla1 = "usuarios";
+			$tabla2 = "comentarios";
+			$tabla3 = "compras";
+			$tabla4 = "deseos";
+			$id = $_GET["id"];
+			if($_GET["foto"] != ""){
+				unlink($_GET["foto"]);
+				rmdir('vistas/img/usuarios/'.$_GET["id"]);
+			}
+			$respuesta = ModeloUsuarios::mdlEliminarUsuario($tabla1,$id);
+			ModeloUsuarios::mdlEliminarComentarios($tabla2, $id);
+			ModeloUsuarios::mdlEliminarCompras($tabla3, $id);
+			ModeloUsuarios::mdlEliminarListaDeseos($tabla4, $id);
+			if($respuesta == "ok"){
+				$url = ruta::ctrRuta();
+				echo'<script>
+
+				swal({
+					  title: "¡SU CUENTA HA SIDO BORRADA!",
+					  text: "¡Debe registrarse nuevamente si desea ingresar!",
+					  type: "success",
+					  confirmButtonText: "Cerrar",
+					  closeOnConfirm: false
+				},
+
+				function(isConfirm){
+						 if (isConfirm) {	   
+						   window.location = "'.$url.'salir";
+						  } 
+				});
+
+			  </script>';
+
+			}
+
+		}
+	}
+	//
 
 }
 

@@ -4,6 +4,27 @@
         $habilidades = json_decode($rutaCursos["habilidades"],true);
         $requisitos = json_decode($rutaCursos["requisitos"],true);
         $temporadas = json_decode($rutaCursos["temporadas"],true);
+        $item = null; 
+        $valor = null; 
+        $comentarios = controladorAcademy::mostrarComentarios($item,$valor);
+        $promedioRating = 0; 
+        $cantidadComentarios = 0; 
+        $cantidadCalificaciones = 0; 
+        foreach($comentarios as $key=>$value){
+            if($rutaCursos["id"] == $value["id_producto"]){
+                if($value["rating"] != 0){
+                    $promedioRating+=$value["rating"];
+                    $cantidadCalificaciones+=1; 
+                }
+                $cantidadComentarios+=1; 
+
+            }
+            
+        }
+
+        if($cantidadCalificaciones != 0 || $cantidadCalificaciones != null){
+            $promedioRating /= $cantidadCalificaciones; 
+        }
         echo'    
     <div class="background">
         <div class="container">
@@ -11,15 +32,8 @@
                 <div class="col-md-6">
                     <h1 class="titulo">'.$rutaCursos["nombre"].'</h1>
                     <p>'.$rutaCursos["descripcion"].'</p>
-                    <select class="star-rating">
-                    <option value="">Evaluar</option>
-                    <option value="5">Excelente</option>
-                    <option value="4">Muy bien</option>
-                    <option value="3">Debe mejorar</option>
-                    <option value="2">Malo</option>
-                    <option value="1">Muy malo</option>
-                    </select>
                     <p>Docente: '.$rutaCursos["docente"].'</p>
+                    <h4>Promedio de rating: "'.$promedioRating.'"</h4>
                 </div>
                 <div class="col-md-6">
                     <img style=" width: 100%;" src="'.$rutaCursos["imagen"].'" alt="">
@@ -82,7 +96,6 @@
                     }
                     echo'
                 </div>
-
             </div>
         </div>
     <div class="container">
@@ -96,11 +109,9 @@
                 <h1 class="titulo">Introducción</h1>
                 <p class="">'.$rutaCursos["introducción"].'</p>
             </div>
-
             <div class="col-md-6 text-center">
                 <h1 class="titulo">Temporadas</h1>
                 <div id="accordion">
-
                 ';
                 foreach($temporadas as $value){
 
@@ -170,49 +181,126 @@
         </div>  
         <div class="row">
             <div class="col-md-12 text-center">
+                ';
+               
+                echo'
                 <h1 class="titulo">Comentarios</h1>
-                <div class="swiper mySwiper2 swiper-product">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Cantidad de comentarios: '.$cantidadComentarios.'</h3>
+                    </div>
+                    <div class="col-md-6">
+                    <h3>Promedio de rating: '.$promedioRating.'</h3>
+
+                    </div>
+                </div>
+                <div class="swiper mySwiper23 swiper-product">
                 <div class="swiper-wrapper">
                ';
                $item = null; 
                $valor = null; 
+               $hayComentarios = False; 
                $comentarios = controladorAcademy::mostrarComentarios($item,$valor);
-
                foreach($comentarios as $key=>$value){
-                  
-                       echo'
-                       <div class="swiper-slide slide-product">
-                       <a class="card-curso" href="#" > 
-                         <div class="container justify-content-center" id="card-tooltip" aria-describedby="tooltip">
-                             <div class="row">
-                               <div class="col-md-12">
-                                 
-                               <i class="fa-solid fa-user-secret"></i>
-                               </div> 
-                               <div class="col-md-12">            
-                                 <h4 class="titulo-curso">Edson Hernández</h4>
-                                 <p>Fecha: '.$value["fecha"].'</p> 
+                if($rutaCursos["id"] == $value["id_producto"]){
 
-                               </div>
-                                 <p>'.$value["comentario"].'</p> 
-                             <select class="star-rating">
-                                 <option value="">Select a rating</option>
-                                 <option value="5">Excellent</option>
-                                 <option value="4">Very Good</option>
-                                 <option value="3">Average</option>
-                                 <option value="2">Poor</option>
-                                 <option value="1">Terrible</option>
-                             </select>
-                            
-                             </div>
-                         </div>
-                         </a>
-                       </div>
-                       <div id="tooltip" role="tooltip">Im a tooltip</div>
-                       
-                       ';
+                    $usuarioBusqueda = controladorUsuarios::ctrBuscarUsuario($value["id_usuario"]);
 
+                    $hayComentarios = True;
+                    echo'
+                    <div class="swiper-slide slide-product">
+                    <a class="card-curso" href="#" > 
+                      <div class="container justify-content-center" id="card-tooltip" aria-describedby="tooltip">
+                          <div class="row">
+                            <div class="col-md-12">
+                            <center>
+                              ';
+                              if($usuarioBusqueda[0]["foto"] == "" || $usuarioBusqueda[0]["foto"] == null){
+                                echo'<img style=" width: 15%; padding-bottom:10px;" src="'.$urlServidor.'vistas/img/usuarios/default/perfil.png" alt="">';
+                              }
+                              else{
+                                echo'<img style=" width: 15%; padding-bottom:10px;" src="'.$url.$usuarioBusqueda[0]["foto"].'" alt="">';
+
+                              }
+                              echo'
+                           
+                            </center>
+                            </div> 
+                            <div class="col-md-12">            
+                              <h4 class="titulo-curso">'.$usuarioBusqueda[0]["nombre"].'</h4>
+                              <p>Fecha: '.$value["fecha"].'</p> 
+                            </div>
+                              <p>'.$value["comentario"].'</p> 
+                              ';
+                              switch($value["rating"]){
+                                 case 1:
+                                     echo'  <select class="star-rating">
+                                     <option value="">Select a rating</option>
+                                     <option value="5">Excellent</option>
+                                     <option value="4">Very Good</option>
+                                     <option value="3">Average</option>
+                                     <option value="2">Poor</option>
+                                     <option value="1" selected>Terrible</option>
+                                 </select>';
+                                     break; 
+                                 case 2:
+                                     echo'  <select class="star-rating">
+                                     <option value="">Select a rating</option>
+                                     <option value="5">Excellent</option>
+                                     <option value="4">Very Good</option>
+                                     <option value="3">Average</option>
+                                     <option value="2" selected>Poor</option>
+                                     <option value="1">Terrible</option>
+                                 </select>';
+                                     break; 
+                                 case 3:
+                                     echo'  <select class="star-rating">
+                                     <option value="">Select a rating</option>
+                                     <option value="5">Excellent</option>
+                                     <option value="4">Very Good</option>
+                                     <option value="3" selected>Average</option>
+                                     <option value="2">Poor</option>
+                                     <option value="1">Terrible</option>
+                                 </select>';
+                                     break; 
+                                 case 4:
+                                     echo'  <select class="star-rating">
+                                     <option value="">Select a rating</option>
+                                     <option value="5">Excellent</option>
+                                     <option value="4" selected>Very Good</option>
+                                     <option value="3">Average</option>
+                                     <option value="2">Poor</option>
+                                     <option value="1">Terrible</option>
+                                 </select>';
+                                     break; 
+                                 case 5:
+                                     echo'  <select class="star-rating">
+                                     <option value="">Select a rating</option>
+                                     <option value="5" selected>Excellent</option>
+                                     <option value="4">Very Good</option>
+                                     <option value="3">Average</option>
+                                     <option value="2">Poor</option>
+                                     <option value="1">Terrible</option>
+                                 </select>';
+                                     break; 
+                              }
+                              echo'
+                        
+                         
+                          </div>
+                      </div>
+                      </a>
+                    </div>
+                    <div id="tooltip" role="tooltip">Im a tooltip</div>
+                    
+                    ';
+
+                }
+                    
                    }
+                   if(!$hayComentarios){
+                    echo'<h2>No hay comentarios en este curso</h2>';
+                   }    
                
                echo'
                </div>
@@ -251,6 +339,3 @@ btn.addEventListener('click', async () => {
   }
 });
 </script>
-
-
-

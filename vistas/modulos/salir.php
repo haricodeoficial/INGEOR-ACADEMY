@@ -1,10 +1,19 @@
 <?php
 
 session_destroy();
+
 $url = ruta::ctrRuta();
 
-echo'<script>
+if(isset($_SESSION['id_token_google']) && !empty($_SESSION['id_token_google'])){
 
-window.location = "'.$url.'";
+  unset($_SESSION['id_token_google']);
+
+}
+
+echo '<script>
+	
+	localStorage.removeItem("usuario");
+	localStorage.clear();
+	window.location = "'.$url.'";
 
 </script>';

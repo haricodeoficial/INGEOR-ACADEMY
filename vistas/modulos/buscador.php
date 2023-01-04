@@ -1,3 +1,4 @@
+<section id="buscador-pagina">
 <div class="container">
     <div class="row">   
         <div class="col-md-3 border">
@@ -113,30 +114,21 @@
                             <p>Precio: <strong>'.$value["precio"].'$</strong></p> 
                             <p>Fecha inicio: '.$value["fecha-inicio"].'</p>
                             <p>'.$value["rating"].'</p>
-                        <select class="star-rating">
-                            <option value="">Evaluar</option>
-                            <option value="5">Excelente</option>
-                            <option value="4">Muy bien</option>
-                            <option value="3">Debe mejorar</option>
-                            <option value="2">Malo</option>
-                            <option value="1">Muy malo</option>
-                        </select>
-                        <div class="cart-heart container">
-                          <div class="row">
-                            <div class="col-md-6">
-                            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                             </div>
-                            <div class="col-md-6">
-                            <a href="#"><i class="fa-solid fa-heart"></i></a>
-        
-                            </div>
-                          </div>
-                        </div>
-                      
-        
                         </div>
                     </div>
-                    </a>';
+                    </a>
+                    <div class="cart-heart container">
+            <div class="row">
+              <div class="col-md-6">
+              <button type="button" class="btn btn-default btn-xs canasta" idProducto="'.$value["id"].'" data-toggle="tooltip" title="Agregar a mi lista de deseos"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></button>
+               </div>
+              <div class="col-md-6">
+              <button type="button" class="btn btn-default btn-xs deseos" idProducto="'.$value["id"].'" data-toggle="tooltip" title="Agregar a mi lista de deseos"><i class="fa-solid fa-heart" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+                    
+                    ';
                 }
                 
              }
@@ -145,3 +137,5 @@
         </div>
     </div>
 </div>
+
+</section>

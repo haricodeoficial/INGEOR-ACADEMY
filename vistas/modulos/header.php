@@ -21,11 +21,11 @@ if(isset($_SESSION["validarSesion"])){
 
 ?>
 <nav class="navbar navbar-expand-lg fixed-top">
-<a href="<?php echo $url;?>">
+<a class="responsive-logo"href="<?php echo $url;?>">
    <img class="logo-principal" src="<?php echo $url;?>vistas/img/logoLetras.png" alt="logo">
 </a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
+   <i style="color:#fff;" class="fa-solid fa-bars"></i>
          </button>
             <div class="input-group input-group-search mx-auto" id="buscador">
                <input type="search" name="buscar" class="form-control" placeholder="Buscar..." aria-label="Buscar" aria-describedby="search-button-addon">
@@ -45,21 +45,20 @@ if(isset($_SESSION["validarSesion"])){
                      if($_SESSION["validarSesion"] == "ok"){
                          if($_SESSION["modo"] == "directo"){ 
                            echo' <li class="nav-item cart">
-                           <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                           <div class="pup"><p class="cantidadCesta" style="font-size:15px; font-weight:700; padding-left:5px;"></p></div>
+                           <a href="carrito-de-compras"><i class="fa-solid fa-cart-shopping"></i></a>
                            </li>
                            <li class="nav-item favorite">
-                           <a href="#"><i class="fa-solid fa-heart"></i></a>
+                           <a href="perfil"><i class="fa-solid fa-heart"></i></a>
                            </li>';
                            if($_SESSION["foto"] != ""){
                               echo'<li class="nav-item">
-                              <img class="img-circle" src="'.$url.$_SESSION["foto"].'" style="width:10%;">
-                              <p>'.$_SESSION["nombre"].'</p>
+                              <img class="img-circle" src="'.$url.$_SESSION["foto"].'">
                               </li>';
                            }else{
                               echo'<li class="nav-item" style="width:max-content;">
                               <img class="img-circle" src="'.$urlServidor.'vistas/img/usuarios/default/perfil.png">
 
-                              <p style="color:#fff; font-size:10px;">'.$_SESSION["nombre"].'</p>
 
                               </li>';
                            }
@@ -67,8 +66,7 @@ if(isset($_SESSION["validarSesion"])){
                          
                          }else if($_SESSION["modo"] =="facebook"){
                            echo'<li class="nav-item">
-                              <img class="img-circle" src="'.$url.$_SESSION["foto"].'" style="width:10%;">
-                              <p>'.$_SESSION["nombre"].'</p>
+                              <img class="img-circle" src="'.$url.$_SESSION["foto"].'">
                               </li>';
                          }
                          echo '
